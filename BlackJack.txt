@@ -29,6 +29,17 @@ object Main extends App {
     if(deck(tramp) == 0) throw new IllegalStateException("カード枚数が負数です。")
     deck.updated(tramp, deck(tramp) -1)
   }
+  
+  //山札に存在するカードの中で、手札と足して21を超えないカードの数値を取得
+  val cardsRangeAblePullInTramp: Int => Range = (userTotal: Int) => {
+  	val cardsRangeAblePull: Range = 1 to BLACK_JACK - userTotal
+    if(cardsRangeAblePull.end > 10) 1 to 10
+    else cardsRangeAblePull
+  }
+  
+  //手札と足して21を超えない全てのカード情報を取得
+  val ablePullCardsMapSeq: (Map[AbsTramp,Int],Range[Int]) => Seq[Map[AbsTramp,Int]] =
+  	(deckMap: Map[AbsTramp,Int], ableRange: Range[Int]) =>  for(c <- ableRange) yield deckMap.filter(_._1.num == c)
 
   //*******************************************************
 
@@ -56,16 +67,16 @@ object Main extends App {
   println("userTotalNum : " + userTotalNum)
 
   //山札に存在するカードの中で、手札と足して21を超えないカードの数値を代入
-  val cardsRangeAblePullInTramp: Range = {
-  	val cardsRangeAblePull: Range = 1 to BLACK_JACK - userTotalNum
-    if(cardsRangeAblePull.end > 10) 1 to 10
-    else cardsRangeAblePull
-  }
-  println("cardsRangeAblePullInTramp : " + cardsRangeAblePullInTramp)
+  //val cardsRangeAblePullInTramp: Range = {
+  //	val cardsRangeAblePull: Range = 1 to BLACK_JACK - userTotalNum
+  //	if(cardsRangeAblePull.end > 10) 1 to 10
+  //	else cardsRangeAblePull
+  //}
+  //println("cardsRangeAblePullInTramp : " + cardsRangeAblePullInTramp)
 
-  //手札と足して21を超えない全てのカードを代入
-  val ablePullCardsMapSeq: Seq[Map[AbsTramp,Int]] = for(c <- cardsRangeAblePullInTramp) yield deck.filter(_._1.num == c)
-  println("ablePullCardsMapSeq : " + ablePullCardsMapSeq)
+  //手札と足して21を超えない全てのカード情報を代入
+  //val ablePullCardsMapSeq: Seq[Map[AbsTramp,Int]] = for(c <- cardsRangeAblePullInTramp) yield deck.filter(_._1.num == c)
+  //println("ablePullCardsMapSeq : " + ablePullCardsMapSeq)
 
   //手札と足して21を超えない全てのカードの残り枚数を代入
   val ablePullCardsCounts: Seq[Int] = for(m <- ablePullCardsMapSeq) yield m.foldLeft(0)((acc,x) => acc + x._2)
@@ -88,7 +99,7 @@ object Main extends App {
   //ディーラーの手札の平均点
   val dealerTotalHandsAverage = averageAblePullCardsPoints + dealerHand
   
-  if(userTotalNum < dealerTotalHandsAverage && ratioAblePullCards > HIT_PERCENT && nextUserTotal <= BLACK_JACK){
+  if(userTotalNum < dealerTotalHandsAverage && ratioAblePullCards > HIT_PERCENT && isBurst(nextUserTotal)){
   	println("HIT")
   }
   else if(userTotalNum < delerTotalHandsAverage && raionAblePullCards < HIT_PERCENT){ //ここら辺修正
