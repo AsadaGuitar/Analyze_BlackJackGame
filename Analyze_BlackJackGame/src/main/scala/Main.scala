@@ -1,6 +1,12 @@
 import Tramp._
 
+
 object Main extends App {
+
+  class PipelineHelper[T](x: T) {
+    def |>[S](f: T => S): S = f(x)
+  }
+  implicit def Pipeline[T](x: T): PipelineHelper[T] = new PipelineHelper(x)
 
   //ブラックジャックの最大点
   val BLACK_JACK: Int = 21
@@ -21,7 +27,7 @@ object Main extends App {
       if(x == Ace || y == Ace) {
         if (x == Ace && y == Ace)
           Seq(12, 2)
-        else Seq(x.num + y.num + 10)
+        else Seq(x.num + y.num + 10, x.num + y.num)
       }
       else Seq(x.num + y.num)
 
@@ -52,13 +58,59 @@ object Main extends App {
     (range: Range, deck: Seq[Tramp]) => deck.count(range contains _.num) / deck.size.toFloat
 
   //得点と、最高得点を受取り、得点と合わせた時に最高得点を超えてしまう得点を返却
-  val burstRange: (Int, Int) => Range =
+  val overRange: (Int, Int) => Range =
     (score: Int, blackJack: Int) =>
       if(score >= blackJack) 1 to 11
       else blackJack - score + 1 to 11
 
-  //*******************************************************
+  //得点と山札を受取りバーストしない確率を返却
+  val ratioNoBurst: (Int, Int, Seq[Tramp]) => Float =
+    (hand: Int, max: Int, deck: Seq[Tramp]) => 1 - ratioTrampsRangeInDeck(overRange(hand, max), deck)
 
+  //Trampの集合からAceが1の時と11の時の平均値を取得
+  val trampsAverage: Seq[Tramp] => Seq[Float] =
+    (tramps: Seq[Tramp]) => {
+      val maxNums = tramps.foldLeft(0)((acc,x) => acc + (if (x == Ace) 11 else x.num))
+      val minNums = tramps.foldLeft(0)((acc,x) => acc + (if (x == Ace) 1 else x.num))
+      val lengthF = tramps.length.toFloat
+      Seq(minNums / lengthF, maxNums / lengthF)
+    }
+
+  //指定の範囲に到達するまで引き、その度に山札から手札を消す
+  def calculateRatioUntilReachRange(score: Int, deck: Seq[Tramp], range: Range): Seq[Int] ={
+
+    def getAddition(num: Int, numDeck: Seq[Int]): Seq[(Seq[Int], Seq[Tramp])] ={
+      for{
+        t <- numDeck
+      } yield {
+        val l = {
+          if(t == 1) {
+            if(range.start < num +11){
+              if(range.end < num +11 ) Seq(num +1)
+              else Seq(num +11)
+            }
+            Seq(num +1, num +11)
+          }
+          else Seq(num +t)
+        }
+        (l, deleteTramp(tramp(t,PLAYING_TRAMPS).get, numDeck.map(x => tramp(x,PLAYING_TRAMPS).get)))
+      }
+    }
+
+    def addUntilRange(n: Int, deck: Seq[Tramp]): Seq[Int] = n match {
+      case a if range.start <= a => Seq(a)
+      case _ =>
+        for{
+          (a,b) <- getAddition(n, deck.map(_.num))
+          c <- a
+          y <- addUntilRange(c, b)
+        } yield y
+    }
+    addUntilRange(score,deck)
+  }
+
+
+  //*************************************************************************************
 
   println("デッキの数を入力してください。")
   val numberOfDeck = io.StdIn.readInt()
@@ -80,7 +132,45 @@ object Main extends App {
 
   println(deck)
 
-  println(1 - ratioTrampsRangeInDeck(burstRange(userHandA+userHandB, BLACK_JACK), deck))
+
+  //バーストしない確率（ディーラー）
+  val dealerNext = for{
+    x <- trampsAverage(deck)
+  } yield x + dealerHand
+  println("ディーラの合計が16以下の確率 : " + ratioNoBurst(dealerHand,DEALERS_BORDER,deck))
+  println("ディーラ合計(期待値) : " + dealerNext)
+  //バーストしない確率（ユーザー）
+  for{
+    x <- handScore(tramp(userHandA, PLAYING_TRAMPS).get,tramp(userHandB, PLAYING_TRAMPS).get)
+    y <- handScore(tramp(dealerHand, PLAYING_TRAMPS).get,tramp(trampsAverage(deck)(1).toInt, PLAYING_TRAMPS).get)
+  }yield {
+    println("ユーザがHitしてバーストしない確率")
+    println(ratioNoBurst(x, BLACK_JACK, deck))
+    println("ディーラがHItしてバーストしない確率")
+    println(ratioNoBurst(y,BLACK_JACK,deck))
+  }
+
+  val overRangeScores = calculateRatioUntilReachRange(dealerHand, deck,17 to 21)
+  val inRangeScores = overRangeScores.filter(_ <= 21)
+  println("ディーラーがこのゲームでバーストする確率 : " + (1 - (inRangeScores.length / overRangeScores.length.toFloat)))
+  println(overRangeScores.length)
+
+
+
+  println("deckの平均値 : " + trampsAverage(deck))
+
+//  println(deck.map(_.num))
+
+//  println("************\n" + calculateRatioUntilReachRange(10,deck,17 to 21))
+
+
+//  val overRangeScoresU = calculateRatioUntilReachRange(userHandA + userHandB, deck, 17 to 21)
+//  val inRangeScoresU = overRangeScores.filter(x => 17 <= x && x <= 21)
+//  println("ユーザーがこのゲームでオーバーする確率 : " + (1 - (inRangeScoresU.length / overRangeScoresU.length.toFloat)))
+
+
+
+
 
 //  //手札の合計
 //  val userTotal = userHandA + userHandB
