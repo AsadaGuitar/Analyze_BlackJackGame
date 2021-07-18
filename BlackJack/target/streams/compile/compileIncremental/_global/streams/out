@@ -1,38 +1,6 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 5 products, 2 sources, 1 libraries
-[debug] current source = Set(${BASE}/src/main/scala/BlackJack.scala, ${BASE}/src/main/scala/Main.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/Main.scala), unmodified = ...),Set(),Set(),API Changes: Set())
-[debug] 
-[debug] Initial source changes:
-[debug] 	removed: Set()
-[debug] 	added: Set()
-[debug] 	modified: Set(${BASE}/src/main/scala/Main.scala)
-[debug] Invalidated products: Set()
-[debug] External API changes: API Changes: Set()
-[debug] Modified binary dependencies: Set()
-[debug] Initial directly invalidated classes: Set(Main)
-[debug] Sources indirectly invalidated by:
-[debug] 	product: Set()
-[debug] 	binary dep: Set()
-[debug] 	external source: Set()
-[debug] All initially invalidated classes: Set(Main)
-[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/Main.scala)
-[debug] Initial set of included nodes: Main
-[debug] compilation cycle 1
-[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
-[debug] Getting org.scala-sbt:compiler-bridge_2.13:1.4.3:compile for Scala 2.13.6
-[debug] [zinc] Running cached compiler 2ef38ddb for Scala compiler version 2.13.6
-[debug] [zinc] The Scala compiler is invoked with:
-[debug] 	-bootclasspath
-[debug] 	C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.6\scala-library-2.13.6.jar
-[debug] 	-classpath
-[debug] 	C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes
-[debug] New invalidations:
-[debug] Initial set of included nodes: 
-[debug] Previously invalidated, but (transitively) depend on new invalidations:
-[debug] Final step, transitive dependencies:
-[debug] 	Set()
-[debug] No classes were invalidated.
-[debug] Scala compilation took 0.2457348 s
-[info] done compiling
+[debug] previous = Stamps for: 10 products, 3 sources, 1 libraries
+[debug] current source = Set(${BASE}/src/main/scala/BlackJackCore.scala, ${BASE}/src/main/scala/BlackJackIO.scala, ${BASE}/src/main/scala/Main.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] No changes
