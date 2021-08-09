@@ -6,7 +6,10 @@ import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
 
-
+/*
+name  DetailedStrategy
+func  計算結果に基づきアクションを選択
+ */
 object DetailedStrategy {
 
   case class OriginalData(playerHands: Hands, dealerHands: Int, deck: Deck)
@@ -29,16 +32,27 @@ object DetailedStrategy {
     }
 
   /*
+  計算結果を標準出力
+   */
+  private def announceCalculationResults(results: CalculationProbabilityDetails): Unit ={
+    val accuracy: Float = results.accuracy.toFloat
+    val playerBurstProbability: Float = results.playerBurstProbability.toFloat
+    val dealerBurstProbability: Float = results.dealerBurstProbability.toFloat
+    val dealerWinProbability: Float = results.dealerWinProbability.toFloat
+//    val dealerLoseProbability: Float = results.dealerLoseProbability.toFloat
+    val drawProbability: Float = results.drawProbability.toFloat
+
+    println(s"計算結果の正確性 : ${accuracy * 100}%")
+    println(s"バースト確率[プレイヤー] : ${playerBurstProbability * 100}%")
+    println(s"バースト確率[ディーラー] : ${dealerBurstProbability * 100}%")
+    println(s"ディーラー勝率 : ${dealerWinProbability * 100}%")
+    println(s"ドロー確率 : ${drawProbability * 100}%")
+  }
+
+  /*
   統計データに基づいた確率から次のアクションを選択
    */
   private def refinedJudge(results: CalculationProbabilityDetails): Action ={
-
-    println("Accuracy calculate Action is [" + results.accuracy + "]")
-    println("playerBurstProbability : " + results.playerBurstProbability)
-    println("dealerBurstProbability : " + results.dealerBurstProbability)
-    println("dealerWinProbability : " + results.dealerWinProbability)
-    println("dealerLoseProbability : " + results.dealerLoseProbability)
-    println("drawProbability : " + results.drawProbability)
 
     if(results.playerBurstProbability < 0.1) Hit
     else if (results.playerBurstProbability < 0.3 &&
@@ -47,6 +61,15 @@ object DetailedStrategy {
     else if (results.dealerWinProbability > results.dealerLoseProbability) Hit
     else if (0.55 < results.drawProbability) Stand
     else Stand
+  }
+
+  def createPlayerScore(playerHands: Hands): Int ={
+    val aceCount = playerHands.count(_==1)
+    val changedHands = changeAceToEleven(aceCount,playerHands,x => (1 to 21).contains(x))
+    changedHands match {
+      case Some(x) => x.sum
+      case None => playerHands.sum
+    }
   }
 
   /*
@@ -59,7 +82,7 @@ object DetailedStrategy {
 
     val playerHands: Hands = originalData.playerHands
     val deck: Deck = originalData.deck
-    val playerScore: Int = originalData.playerHands.sum
+    val playerScore: Int = createPlayerScore(originalData.playerHands)
 
     val playerBurstProbability: Double = burstProbability(playerHands, deck)
 
@@ -98,9 +121,14 @@ object DetailedStrategy {
   @throws[InterruptedException]
   def createStatisticalResults(originalData: OriginalData): StatisticalResults ={
 
+    def joinLists[T](ll: Seq[Seq[T]]): Seq[T] = for {l <- ll; r <- l} yield r
+
     val dealerHand = originalData.dealerHands
     val deck = originalData.deck
+    val isInDealerRange: Int => Boolean = (hand: Int) => (17 to 21).contains(hand)
 
+    println("計算を開始します。")
+    val start = System.currentTimeMillis()
     val futureResult: Future[Seq[Seq[Rations]]] =
       asynchronousCalculationSeparated(
         Seq(dealerHand),
@@ -108,10 +136,12 @@ object DetailedStrategy {
         deck,
         isInDealerRange,
         futureLoopHit)
-
     val resultsList: Seq[Seq[Rations]] = Await.result(futureResult, 10 second)
-    val results: Seq[Rations] = joinLists(resultsList)
+    val end = System.currentTimeMillis()
+    println("計算が完了しました。")
+    println(s"所要時間 : ${(end - start) / 1000.toFloat}s")
 
+    val results: Seq[Rations] = joinLists(resultsList)
     var probabilityMap: Map[Int, BigDecimal] = Map(17 -> 0, 18 -> 0, 19 -> 0, 20 -> 0, 21 -> 0, 22 -> 0)
     var calculationCounter: Long = 0
 
@@ -130,6 +160,7 @@ object DetailedStrategy {
       }
     }
 
+    println(s"総計算回数 : ${calculationCounter}回")
     StatisticalResults(probabilityMap,calculationCounter)
   }
 
@@ -146,6 +177,7 @@ object DetailedStrategy {
     val calculationProbabilityDetails: CalculationProbabilityDetails =
       createCalculationProbabilityDetails(originalData,statisticalResults)
 
+    announceCalculationResults(calculationProbabilityDetails)
     val action = refinedJudge(calculationProbabilityDetails)
     action
   }

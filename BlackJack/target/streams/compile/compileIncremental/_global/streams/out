@@ -1,6 +1,6 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 52 products, 8 sources, 1 libraries
+[debug] previous = Stamps for: 53 products, 8 sources, 1 libraries
 [debug] current source = Set(${BASE}/src/main/scala/blackJack/BasicStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedCalculation.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/MainUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
 [debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/blackJack/BlackJackIO.scala), unmodified = ...),Set(),Set(),API Changes: Set())
 [debug] 
@@ -11,20 +11,18 @@
 [debug] Invalidated products: Set()
 [debug] External API changes: API Changes: Set()
 [debug] Modified binary dependencies: Set()
-[debug] Initial directly invalidated classes: Set(blackJack.BlackJackIO.Player, blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO, blackJack.BlackJackIO.User)
+[debug] Initial directly invalidated classes: Set(blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO)
 [debug] Sources indirectly invalidated by:
 [debug] 	product: Set()
 [debug] 	binary dep: Set()
 [debug] 	external source: Set()
-[debug] All initially invalidated classes: Set(blackJack.BlackJackIO.Player, blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO, blackJack.BlackJackIO.User)
+[debug] All initially invalidated classes: Set(blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO)
 [debug] All initially invalidated sources:Set(${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
-[debug] Initial set of included nodes: blackJack.BlackJackIO.Player, blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO, blackJack.BlackJackIO.User
-[debug] Including blackJack.BlackJackIO.Dealer by blackJack.BlackJackIO.Player
-[debug] Including blackJack.BlackJackIO.User by blackJack.BlackJackIO.Player
+[debug] Initial set of included nodes: blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO
 [debug] compilation cycle 1
 [info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
 [debug] Getting org.scala-sbt:compiler-bridge_2.13:1.4.3:compile for Scala 2.13.6
-[debug] [zinc] Running cached compiler 33114455 for Scala compiler version 2.13.6
+[debug] [zinc] Running cached compiler 1a70fd42 for Scala compiler version 2.13.6
 [debug] [zinc] The Scala compiler is invoked with:
 [debug] 	-bootclasspath
 [debug] 	C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.6\scala-library-2.13.6.jar
@@ -46,5 +44,5 @@
 [debug] Final step, transitive dependencies:
 [debug] 	Set()
 [debug] No classes were invalidated.
-[debug] Scala compilation took 0.7303096 s
+[debug] Scala compilation took 0.1916069 s
 [info] done compiling

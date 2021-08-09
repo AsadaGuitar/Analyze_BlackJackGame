@@ -1,7 +1,7 @@
-import blackJack.BlackJackIO.{Dealer, Player, User, readAction, readDeckNum, readGameCommand, readHand}
-import blackJack.BlackJackUtility.{Refined, Simplified, calculateHandsToAction, deleteHandsAtDeck, initDeck}
+import blackJack.BlackJackIO.{Dealer, Player, User, UserHit, readAction, readDealerHands, readDeckNum, readGameCommand, readHand}
+import blackJack.BlackJackUtility.calculateHandsToAction
 import blackJack.DetailedStrategy.OriginalData
-import blackJack.{Action, Continue, Deck, DoubleDown, Finish, GameCommand, Hands, Hit, InitDeck, Stand, StartGame, TRAMPS}
+import blackJack._
 
 import scala.annotation.tailrec
 
@@ -26,7 +26,7 @@ object MainUtility {
 
   //ゲーム開始のアナウンス
   private def startBlackJackOperatorSystem(): Unit ={
-    println("\nWelcome to BLACK JACK Operator System\n")
+    println("Welcome to BLACK JACK Operator System\n")
   }
 
   //山札の取得
@@ -59,35 +59,67 @@ object MainUtility {
     (playerHands,deck2)
   }
 
+  private def createHandString(hands: Hands, count: Int): String ={
+    if (count == 0) "[" ++ createHandString(hands,count +1)
+    else if (count == hands.length) {
+      hands(count -1).toString ++ "]"
+    }
+    else hands(count -1).toString ++ "," ++ createHandString(hands,count +1)
+  }
+
+  //計算に使用するデータを標準出力
+  private def announceDataToCalculate(playerHands: Hands,dealerHand: Int,deck: Deck): Unit ={
+
+    val playerHandsString = createHandString(playerHands,0)
+    println("\n入力情報を出力します。")
+    println(s"Player's hand : $playerHandsString")
+    println(s"Dealer's hand : [$dealerHand]")
+    println(s"Number of decks : ${deck.length}")
+  }
+
   //計算
   private def calculateAction(playerHands: Hands,dealerHand: Int,deck: Deck): Action ={
+    //計算に使用するデータを標準出力
+    announceDataToCalculate(playerHands,dealerHand,deck)
     //初期設定
     val originalData = OriginalData(playerHands,dealerHand,deck)
     //計算開始
+    println("\nStart Calculating The Best Action...")
     val actionWithType = calculateHandsToAction(originalData)
     val calculationType = actionWithType._2
     val action = actionWithType._1
     calculationType match {
-      case Refined => println("詳細分析完了")
-      case Simplified => println("簡略分析完了")
+      case Refined => println("\n詳細分析完了")
+      case Simplified => println("\n簡略分析完了")
     }
     //プレイヤーが選択したアクションを返却
-    println(s"分析の結果最善手は[${action.toString}]です。")
+    println(s"分析の結果、最善手は[${action.toString}]です。")
     val inputAction = readAction()
     inputAction
   }
 
   //Standコマンドのアクション
   private def standAction(deck: Deck): StandResult ={
-    val handWithDeck: (Int,Deck) = getHand(Dealer,deck)
+
+    @tailrec
+    def deleteDealerHands(deck:Deck, dealerHands: Hands, counter: Int): Deck ={
+      if(counter < dealerHands.length) {
+        val deletedDeck = deleteHandsAtDeck(deck,dealerHands(counter))
+        deleteDealerHands(deletedDeck,dealerHands,counter +1)
+      }
+      else deck
+    }
+    val dealerHands: Hands = readDealerHands(Nil: Seq[Int])
+    val dealerHandsString = createHandString(dealerHands,0)
+    println(s"ディーラがHitしたトランプ : $dealerHandsString")
+    val newDeck = deleteDealerHands(deck,dealerHands,0)
     val command = getGameCommand
-    val newDeck = handWithDeck._2
     StandResult(command,newDeck)
   }
 
   //Hitコマンドのアクション
   private def hitAction(playerHands: Hands,dealerHand: Int,deck: Deck): HitResult ={
-    val handWithDeck: (Int,Deck) = getHand(User,deck)
+    val handWithDeck: (Int,Deck) = getHand(UserHit,deck)
     val hitHand = handWithDeck._1
     val deletedDeck = handWithDeck._2
     if(21 < (playerHands :+ hitHand).sum) {
@@ -155,7 +187,6 @@ object MainUtility {
     MainFlowResult(actionFlowResult.gameCommand, actionFlowResult.deck)
   }
 
-
   @tailrec
   def commandSwitch(command: GameCommand, optDeck: Option[Deck]): Unit = command match {
     case StartGame =>
@@ -181,5 +212,4 @@ object MainUtility {
 
     case Finish => println("Shut Down The System.")
   }
-
 }

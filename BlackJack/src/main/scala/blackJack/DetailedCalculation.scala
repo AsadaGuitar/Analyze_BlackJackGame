@@ -1,44 +1,15 @@
 package blackJack
 
-import scala.annotation.tailrec
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
+/*
+name  DetailedCalculation
+func  ディーラが引く可能性のある組み合わせを全件取得
+ */
 object DetailedCalculation {
 
   case class Rations(tramp: Int, probability: BigDecimal, calculatedCount: Long)
-
-  val isInDealerRange: Int => Boolean = (hand: Int) => (17 to 21).contains(hand)
-
-  def joinLists[T](ll: Seq[Seq[T]]): Seq[T] = for {l <- ll; r <- l} yield r
-
-  private def productOfList(ints: List[Int]): BigInt = {
-    def loop(ints: List[Int]): BigInt = ints match {
-      case Nil => 1
-      case head :: tail => head * loop(tail)
-    }
-    if (ints.isEmpty) 0
-    else loop(ints)
-  }
-
-  val hitRatioByLengthCalculation: (Int, Int) => BigDecimal = {
-    (len: Int, deckLen: Int) =>
-      val r: List[Int] = (((deckLen - len) + 1) to deckLen).toList
-      1 / productOfList(r).toDouble
-  }
-
-  val denominatorCalculation: (Int, Int) => BigInt = {
-    (len: Int, deckLen: Int) =>
-      val r: List[Int] = (((deckLen - len) + 1) to deckLen).toList
-      val denominator = productOfList(r)
-      denominator
-  }
-
-  @tailrec
-  def changeAceToEleven(aceCount: Int, hands: Hands, isInRange: Int => Boolean): Option[Seq[Int]] =
-    if (aceCount < 1) None
-    else if ((17 to 21).contains(hands.sum + 10 * aceCount)) Some(hands :+ 10 * aceCount)
-    else changeAceToEleven(aceCount - 1, hands, isInRange)
 
   val loopHit: (Hands,Deck,Deck,Int => Boolean,Long) => Seq[Rations] =
     (hands: Hands,
@@ -84,14 +55,15 @@ object DetailedCalculation {
   山札の枚数分非同期実行
    */
   val asynchronousCalculationSeparated:
-    (Hands,Deck,Deck,Int => Boolean,(Hands, Deck, Deck, Int => Boolean) => Future[Seq[Rations]])
+    (Hands, Deck, Deck, Int => Boolean,
+      (Hands, Deck, Deck, Int => Boolean) => Future[Seq[Rations]])
       => Future[Seq[Seq[Rations]]] =
     (hands: Hands,
      deck: Deck,
      parentDeck: Deck,
      isInRange: Int => Boolean,
-     futureFunction: (Hands, Deck, Deck, Int => Boolean) => Future[Seq[Rations]])
-    => {
+     futureFunction: (Hands, Deck, Deck, Int => Boolean) => Future[Seq[Rations]]) => {
+
       val futures: Seq[Future[Seq[Rations]]] =
         for{
           t <- deck

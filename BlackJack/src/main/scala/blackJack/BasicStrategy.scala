@@ -1,6 +1,9 @@
 package blackJack
 
-
+/*
+name  BasicStrategy
+func  ベーシックストラテジーの評価集合
+ */
 object BasicStrategy {
 
   private def hardHand(playerScore: Int, dealerScore: Int): Action = playerScore match {
