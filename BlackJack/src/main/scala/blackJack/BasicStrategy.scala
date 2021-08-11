@@ -1,11 +1,18 @@
 package blackJack
 
 /*
-name  BasicStrategy
-func  ベーシックストラテジーの評価集合
+オブジェクト名   BasicStrategy
+機能           ベーシックストラテジーの評価集合
  */
 object BasicStrategy {
 
+  /*
+  メソッド名   hardHand
+  機能        ベーシックストラテジーのハードハンド評価を実行
+  引数        playerScore: Int      プレイヤーのスコア
+             dealerScore: Int      ディーラのスコア
+  戻値        Action                選択されたアクション
+   */
   private def hardHand(playerScore: Int, dealerScore: Int): Action = playerScore match {
     case score if score <= 8 => Hit
     case score if 17 <= score => Stand
@@ -36,6 +43,13 @@ object BasicStrategy {
       }
   }
 
+  /*
+  メソッド名   softHand
+  機能        ベーシックストラテジーのソフトハンド評価を実行
+  引数        playerScore: Int      プレイヤーのスコア
+             dealerScore: Int      ディーラのスコア
+  戻値        Action                選択されたアクション
+   */
   private def softHand(scoreNotAce: Int, dealerScore: Int): Action = scoreNotAce match {
     case score if score == 4 || score == 5 =>
       dealerScore match {
@@ -67,13 +81,24 @@ object BasicStrategy {
       }
   }
 
+  /*
+  メソッド名   getSimplifiedAction
+  機能        ベーシックストラテジーの実行
+  引数        playerScore: Hands    プレイヤーの手札
+             dealerScore: Int      ディーラのスコア
+  戻値        Action                選択されたアクション
+   */
   def getSimplifiedAction(playerHands: Hands, dealerHand: Int): Action = playerHands match {
+    //手札に1が含まれる場合
     case hands if hands.contains(1) =>
       val score = hands.diff(Seq(1)).sum
+      //ソフトハンドを実行
       val action: Action = softHand(score, dealerHand)
       action
+    //手札に1が含まれていない場合
     case _ =>
       val score = playerHands.sum
+      //ハードハンドを実行
       val action: Action = hardHand(score, dealerHand)
       action
   }
