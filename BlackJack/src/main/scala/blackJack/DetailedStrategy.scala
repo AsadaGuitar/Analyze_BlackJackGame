@@ -80,7 +80,7 @@ object DetailedStrategy {
     println(s"バースト確率[プレイヤー] : ${playerBurstProbability * 100}%")
     println(s"バースト確率[ディーラー] : ${dealerBurstProbability * 100}%")
     println(s"ディーラー勝率 : ${dealerWinProbability * 100}%")
-    println(s"ディーラー負率 : ${(dealerLoseProbability + dealerBurstProbability) * 100}%")
+    println(s"ディーラー負率 : ${dealerLoseProbability * 100}%")
     println(s"ドロー確率 : ${drawProbability * 100}%")
   }
 

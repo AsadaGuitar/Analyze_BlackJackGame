@@ -1,3 +1,5 @@
+import newBJ.Deck
+
 import scala.annotation.tailrec
 
 /*
@@ -9,6 +11,8 @@ package object blackJack {
   //エイリアスを定義
   type Deck = Seq[Int]
   type Hands = Seq[Int]
+  type Tramp = Int
+  type Tramps = Seq[Tramp]
 
   //アクションを定義
   abstract class Action

@@ -1,40 +1,48 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 53 products, 8 sources, 1 libraries
-[debug] current source = Set(${BASE}/src/main/scala/blackJack/BasicStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedCalculation.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/MainUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/blackJack/BlackJackIO.scala), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] previous = Stamps for: 58 products, 11 sources, 1 libraries
+[debug] current source = Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/blackJack/BasicStrategy.scala, ${BASE}/src/main/scala/Obj.scala, ${BASE}/src/main/scala/newBJ/Rational.scala, ${BASE}/src/main/scala/blackJack/DetailedStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedCalculation.scala, ${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/newBJ/Player.scala, ${BASE}/src/main/scala/blackJack/BlackJackUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala), removed = Set(), changed = Set(${BASE}/src/main/scala/Obj.scala), unmodified = ...),Set(),Set(),API Changes: Set())
 [debug] 
 [debug] Initial source changes:
 [debug] 	removed: Set()
-[debug] 	added: Set()
-[debug] 	modified: Set(${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
+[debug] 	added: Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala)
+[debug] 	modified: Set(${BASE}/src/main/scala/Obj.scala)
 [debug] Invalidated products: Set()
 [debug] External API changes: API Changes: Set()
 [debug] Modified binary dependencies: Set()
-[debug] Initial directly invalidated classes: Set(blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO)
+[debug] Initial directly invalidated classes: Set(Obj)
 [debug] Sources indirectly invalidated by:
 [debug] 	product: Set()
 [debug] 	binary dep: Set()
 [debug] 	external source: Set()
-[debug] All initially invalidated classes: Set(blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO)
-[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
-[debug] Initial set of included nodes: blackJack.BlackJackIO.Dealer, blackJack.BlackJackIO.User, blackJack.BlackJackIO.UserHit, blackJack.BlackJackIO.Player, blackJack.BlackJackIO
+[debug] All initially invalidated classes: Set(Obj)
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/Obj.scala)
+[debug] Initial set of included nodes: Obj
 [debug] compilation cycle 1
-[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
+[info] compiling 2 Scala sources to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
 [debug] Getting org.scala-sbt:compiler-bridge_2.13:1.4.3:compile for Scala 2.13.6
-[debug] [zinc] Running cached compiler 1a70fd42 for Scala compiler version 2.13.6
+[debug] [zinc] Running cached compiler 7a1ec249 for Scala compiler version 2.13.6
 [debug] [zinc] The Scala compiler is invoked with:
 [debug] 	-bootclasspath
 [debug] 	C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.6\scala-library-2.13.6.jar
 [debug] 	-classpath
 [debug] 	C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\opencsv\opencsv\3.7\opencsv-3.7.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor-typed_2.13\2.6.8\akka-actor-typed_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-slf4j_2.13\2.6.8\akka-slf4j_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.13\2.6.8\akka-actor_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.4.0\config-1.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.13\0.9.0\scala-java8-compat_2.13-0.9.0.jar
-[debug] Invalidating (transitively) by inheritance from blackJack.BlackJackIO...
-[debug] Initial set of included nodes: blackJack.BlackJackIO
-[debug] Invalidated by transitive inheritance dependency: Set(blackJack.BlackJackIO)
-[debug] None of the modified names appears in source file of MainUtility. This dependency is not being considered for invalidation.
-[debug] Change NamesChange(blackJack.BlackJackIO,ModifiedNames(changes = UsedName(finalize,[Default]))) invalidates 1 classes due to The blackJack.BlackJackIO has the following regular definitions changed:
-[debug] 	UsedName(finalize,[Default]).
-[debug]   > by transitive inheritance: Set(blackJack.BlackJackIO)
+[debug] Invalidating (transitively) by inheritance from Obj...
+[debug] Initial set of included nodes: Obj
+[debug] Invalidated by transitive inheritance dependency: Set(Obj)
+[debug] Change NamesChange(Obj,ModifiedNames(changes = UsedName(f,[Default]))) invalidates 1 classes due to The Obj has the following regular definitions changed:
+[debug] 	UsedName(f,[Default]).
+[debug]   > by transitive inheritance: Set(Obj)
+[debug]   > 
+[debug]   > 
+[debug]         
+[debug] Invalidating (transitively) by inheritance from newBJ.HandCalculator...
+[debug] Initial set of included nodes: newBJ.HandCalculator
+[debug] Invalidated by transitive inheritance dependency: Set(newBJ.HandCalculator)
+[debug] Change NamesChange(newBJ.HandCalculator,ModifiedNames(changes = UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(getClass,[Default]), UsedName(isInstanceOf,[Default]), UsedName(equals,[Default]), UsedName(ne,[Default]), UsedName(synchronized,[Default]), UsedName(==,[Default]), UsedName(HandCalculator,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(asInstanceOf,[Default]), UsedName(notifyAll,[Default]), UsedName(finalize,[Default]), UsedName(##,[Default]))) invalidates 1 classes due to The newBJ.HandCalculator has the following regular definitions changed:
+[debug] 	UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(getClass,[Default]), UsedName(isInstanceOf,[Default]), UsedName(equals,[Default]), UsedName(ne,[Default]), UsedName(synchronized,[Default]), UsedName(==,[Default]), UsedName(HandCalculator,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(asInstanceOf,[Default]), UsedName(notifyAll,[Default]), UsedName(finalize,[Default]), UsedName(##,[Default]).
+[debug]   > by transitive inheritance: Set(newBJ.HandCalculator)
 [debug]   > 
 [debug]   > 
 [debug]         
@@ -44,5 +52,5 @@
 [debug] Final step, transitive dependencies:
 [debug] 	Set()
 [debug] No classes were invalidated.
-[debug] Scala compilation took 0.1916069 s
+[debug] Scala compilation took 0.544082 s
 [info] done compiling

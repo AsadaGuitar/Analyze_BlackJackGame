@@ -123,7 +123,7 @@ object Main extends App {
              Deck            プレイヤーの手札を抜いた山札
    */
   private def getPlayerHands(deck: Deck): (Hands,Deck) ={
-    //手札の取得を取得し山札から削除
+    //手札を取得し山札から削除
     val result1 = getHand(User,deck)
     val playerHand1 = result1._1
     val deck1 = result1._2
