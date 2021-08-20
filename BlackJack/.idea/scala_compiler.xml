@@ -4,6 +4,8 @@
     <profile name="sbt 1" modules="blackjack">
       <option name="postfixOps" value="true" />
     </profile>
-    <profile name="sbt 2" modules="BlackJack" />
+    <profile name="sbt 2" modules="BlackJack">
+      <option name="implicitConversions" value="true" />
+    </profile>
   </component>
 </project>

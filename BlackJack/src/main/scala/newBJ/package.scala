@@ -1,20 +1,15 @@
 package object newBJ {
 
   type Tramp = Int
-  type Hand = Seq[Tramp]
+  type Tramps = Seq[Tramp]
   type Deck = Seq[Tramp]
 
-  def productOfList(ints: List[Int]): BigInt = {
-    def loop(ints: List[Int]): BigInt = ints match {
-      case Nil => 1
-      case head :: tail => head * loop(tail)
-    }
-    if (ints.isEmpty) 0
-    else loop(ints)
-  }
+  abstract class SystemCommand
+  case object Start extends SystemCommand
+  case object End extends SystemCommand
 
-  def initDeck(num: Int, tramps: Seq[Int]): Deck = {
-    def addTramps(num: Int, ts: Seq[Int]): Seq[Int] = {
+  def initDeck(num: Int, tramps: Tramps): Deck = {
+    def addTramps(num: Int, ts: Tramps): Deck = {
       if (num <= 1) ts
       else ts ++ addTramps(num - 1, ts)
     }

@@ -1,56 +1,36 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 58 products, 11 sources, 1 libraries
-[debug] current source = Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/blackJack/BasicStrategy.scala, ${BASE}/src/main/scala/Obj.scala, ${BASE}/src/main/scala/newBJ/Rational.scala, ${BASE}/src/main/scala/blackJack/DetailedStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedCalculation.scala, ${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/newBJ/Player.scala, ${BASE}/src/main/scala/blackJack/BlackJackUtility.scala, ${BASE}/src/main/scala/blackJack/BlackJackIO.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala), removed = Set(), changed = Set(${BASE}/src/main/scala/Obj.scala), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] previous = Stamps for: 76 products, 21 sources, 1 libraries
+[debug] current source = Set(${BASE}/src/main/scala/newBJ/action/DoubleDownAction.scala, ${BASE}/src/main/scala/Utility.scala, ${BASE}/src/main/scala/blackJack/BasicStrategy.scala, ${BASE}/src/main/scala/newBJ/Hand.scala, ${BASE}/src/main/scala/blackJack/DetailedStrategy.scala, ${BASE}/src/main/scala/blackJack/DetailedCalculation.scala, ${BASE}/src/main/scala/newBJ/action/EndAction.scala, ${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/newBJ/action/HitAction.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/BlackJackStatistical.scala, ${BASE}/src/main/scala/newBJ/action/ActionFlow.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/ProbsListCreater.scala, ${BASE}/src/main/scala/newBJ/calculation/HandCalculator.scala, ${BASE}/src/main/scala/newBJ/Player.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/ProbabilityOfBlackJack.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/Statistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Rational.scala, ${BASE}/src/main/scala/blackJack/BlackJackUtility.scala, ${BASE}/src/main/scala/newBJ/action/ActionIO.scala, ${BASE}/src/main/scala/blackJack/BlackJackIO.scala, ${BASE}/src/main/scala/newBJ/action/StandAction.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(${BASE}/src/main/scala/newBJ/calculation/probability/Rational.scala, ${BASE}/src/main/scala/newBJ/calculation/HandCalculator.scala, ${BASE}/src/main/scala/Utility.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/Statistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/ProbabilityOfBlackJack.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/ProbsListCreater.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/BlackJackStatistical.scala, ${BASE}/src/main/scala/newBJ/Player.scala), removed = Set(${BASE}/src/main/scala/newBJ/probability/Rational.scala, ${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/newBJ/Tramps.scala, ${BASE}/src/main/scala/Obj.scala, ${BASE}/src/main/scala/newBJ/probability/ProbabilityDetailsCalculator.scala, ${BASE}/src/main/scala/newBJ/probability/Statistical.scala), changed = Set(${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/newBJ/Hand.scala), unmodified = ...),Set(),Set(),API Changes: Set())
 [debug] 
 [debug] Initial source changes:
-[debug] 	removed: Set()
-[debug] 	added: Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala)
-[debug] 	modified: Set(${BASE}/src/main/scala/Obj.scala)
+[debug] 	removed: Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/newBJ/probability/Rational.scala, ${BASE}/src/main/scala/Obj.scala, ${BASE}/src/main/scala/newBJ/probability/Statistical.scala, ${BASE}/src/main/scala/newBJ/Tramps.scala, ${BASE}/src/main/scala/newBJ/probability/ProbabilityDetailsCalculator.scala)
+[debug] 	added: Set(${BASE}/src/main/scala/Utility.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/BlackJackStatistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/ProbsListCreater.scala, ${BASE}/src/main/scala/newBJ/calculation/HandCalculator.scala, ${BASE}/src/main/scala/newBJ/Player.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/ProbabilityOfBlackJack.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/Statistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Rational.scala)
+[debug] 	modified: Set(${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/newBJ/Hand.scala)
 [debug] Invalidated products: Set()
 [debug] External API changes: API Changes: Set()
 [debug] Modified binary dependencies: Set()
-[debug] Initial directly invalidated classes: Set(Obj)
+[debug] Initial directly invalidated classes: Set(newBJ.Tramps, newBJ.SystemCommand, newBJ.probability.Rational, newBJ.Start, newBJ.HandCalculator, newBJ.End, newBJ.package, Obj, newBJ.Hand, newBJ.probability.Statistical, newBJ.probability.ProbabilityDetailsCalculator)
 [debug] Sources indirectly invalidated by:
 [debug] 	product: Set()
 [debug] 	binary dep: Set()
 [debug] 	external source: Set()
-[debug] All initially invalidated classes: Set(Obj)
-[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/newBJ/HandCalculator.scala, ${BASE}/src/main/scala/Obj.scala)
-[debug] Initial set of included nodes: Obj
+[debug] All initially invalidated classes: Set(newBJ.Tramps, newBJ.SystemCommand, newBJ.probability.Rational, newBJ.Start, newBJ.HandCalculator, newBJ.End, newBJ.package, Obj, newBJ.Hand, newBJ.probability.Statistical, newBJ.probability.ProbabilityDetailsCalculator)
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/Utility.scala, ${BASE}/src/main/scala/newBJ/Hand.scala, ${BASE}/src/main/scala/newBJ/package.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/BlackJackStatistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/ProbsListCreater.scala, ${BASE}/src/main/scala/newBJ/calculation/HandCalculator.scala, ${BASE}/src/main/scala/newBJ/Player.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/ProbabilityOfBlackJack.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Statistics/Statistical.scala, ${BASE}/src/main/scala/newBJ/calculation/probability/Rational.scala)
+[debug] Initial set of included nodes: newBJ.Tramps, newBJ.SystemCommand, newBJ.probability.Rational, newBJ.Start, newBJ.HandCalculator, newBJ.End, newBJ.package, Obj, newBJ.Hand, newBJ.probability.Statistical, newBJ.probability.ProbabilityDetailsCalculator
+[debug] Including newBJ.Hand by newBJ.Tramps
+[debug] Including newBJ.Start by newBJ.SystemCommand
+[debug] Including newBJ.End by newBJ.SystemCommand
+[debug] Recompiling all sources: number of invalidated sources > 50.0% of all sources
 [debug] compilation cycle 1
-[info] compiling 2 Scala sources to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
+[info] compiling 23 Scala sources to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
 [debug] Getting org.scala-sbt:compiler-bridge_2.13:1.4.3:compile for Scala 2.13.6
-[debug] [zinc] Running cached compiler 7a1ec249 for Scala compiler version 2.13.6
+[debug] [zinc] Running cached compiler 2c9835da for Scala compiler version 2.13.6
 [debug] [zinc] The Scala compiler is invoked with:
 [debug] 	-bootclasspath
 [debug] 	C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.6\scala-library-2.13.6.jar
 [debug] 	-classpath
-[debug] 	C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\opencsv\opencsv\3.7\opencsv-3.7.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor-typed_2.13\2.6.8\akka-actor-typed_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-slf4j_2.13\2.6.8\akka-slf4j_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.13\2.6.8\akka-actor_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.4.0\config-1.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.13\0.9.0\scala-java8-compat_2.13-0.9.0.jar
-[debug] Invalidating (transitively) by inheritance from Obj...
-[debug] Initial set of included nodes: Obj
-[debug] Invalidated by transitive inheritance dependency: Set(Obj)
-[debug] Change NamesChange(Obj,ModifiedNames(changes = UsedName(f,[Default]))) invalidates 1 classes due to The Obj has the following regular definitions changed:
-[debug] 	UsedName(f,[Default]).
-[debug]   > by transitive inheritance: Set(Obj)
-[debug]   > 
-[debug]   > 
-[debug]         
-[debug] Invalidating (transitively) by inheritance from newBJ.HandCalculator...
-[debug] Initial set of included nodes: newBJ.HandCalculator
-[debug] Invalidated by transitive inheritance dependency: Set(newBJ.HandCalculator)
-[debug] Change NamesChange(newBJ.HandCalculator,ModifiedNames(changes = UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(getClass,[Default]), UsedName(isInstanceOf,[Default]), UsedName(equals,[Default]), UsedName(ne,[Default]), UsedName(synchronized,[Default]), UsedName(==,[Default]), UsedName(HandCalculator,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(asInstanceOf,[Default]), UsedName(notifyAll,[Default]), UsedName(finalize,[Default]), UsedName(##,[Default]))) invalidates 1 classes due to The newBJ.HandCalculator has the following regular definitions changed:
-[debug] 	UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(getClass,[Default]), UsedName(isInstanceOf,[Default]), UsedName(equals,[Default]), UsedName(ne,[Default]), UsedName(synchronized,[Default]), UsedName(==,[Default]), UsedName(HandCalculator,[Default]), UsedName(toString,[Default]), UsedName(notify,[Default]), UsedName(clone,[Default]), UsedName(wait,[Default]), UsedName(hashCode,[Default]), UsedName(asInstanceOf,[Default]), UsedName(notifyAll,[Default]), UsedName(finalize,[Default]), UsedName(##,[Default]).
-[debug]   > by transitive inheritance: Set(newBJ.HandCalculator)
-[debug]   > 
-[debug]   > 
-[debug]         
-[debug] New invalidations:
-[debug] Initial set of included nodes: 
-[debug] Previously invalidated, but (transitively) depend on new invalidations:
-[debug] Final step, transitive dependencies:
-[debug] 	Set()
-[debug] No classes were invalidated.
-[debug] Scala compilation took 0.544082 s
+[debug] 	C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor-typed_2.13\2.6.8\akka-actor-typed_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-slf4j_2.13\2.6.8\akka-slf4j_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\akka\akka-actor_2.13\2.6.8\akka-actor_2.13-2.6.8.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\com\typesafe\config\1.4.0\config-1.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-java8-compat_2.13\0.9.0\scala-java8-compat_2.13-0.9.0.jar
+[debug] Scala compilation took 2.3674808 s
 [info] done compiling

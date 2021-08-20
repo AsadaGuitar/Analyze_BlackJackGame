@@ -1,0 +1,31 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/BlackJack/}blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/BlackJack/}blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 23 Scala sources to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\DoubleDownAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\HitAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\StandAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
+[info] done compiling
+[debug] Forcing garbage collection...
+[success] Total time: 3 s, completed 2021/08/21 2:24:11
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

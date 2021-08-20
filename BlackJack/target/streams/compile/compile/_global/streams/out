@@ -1,2 +1,23 @@
 [debug] Acquiring lock on file C:\Users\soroc\Documents\Scala-workspace\BlackJack\project\target\.sbt-compilation-infos\blackjack-compile\.sbt-idea-lock ...
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\DoubleDownAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\HitAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
+[info] C:\Users\soroc\Documents\Scala-workspace\BlackJack\src\main\scala\newBJ\action\StandAction.scala:1:1: 
+[info] Found names but no class, trait or object is defined in the compilation unit.
+[info] The incremental compiler cannot record the dependency information in such case.
+[info] Some errors like unused import referring to a non-existent class might not be reported.
+[info]     
+[info] package newBJ.action
+[info] ^
 [debug] Releasing lock on file C:\Users\soroc\Documents\Scala-workspace\BlackJack\project\target\.sbt-compilation-infos\blackjack-compile\.sbt-idea-lock.

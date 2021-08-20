@@ -2,20 +2,20 @@ package newBJ
 
 import scala.annotation.tailrec
 
-class Player (h: Hand){
-  require(h.nonEmpty)
+class Player (val h: Option[Hand]){
 
-  def this(t: Tramp) = this(Seq(t))
+  def this(h: Hand) = this(Some(h))
+  def this() = this(None)
 
-  private val _hand: Hand = h
-  def hand: Hand = _hand
+  private val _hand = h
+  def hand = _hand
 
-  def aceCount = hand.count(_ == 1)
+  def set(h: Hand) = new Player(h)
 
-  def hit(deck: Deck): Seq[(Deck,Hand)] =
-    for{
-      ts <- deck
-    } yield (deck diff Seq(ts), hand :+ ts)
+  def countAce = hand match {
+    case Some(x) => x.tramps.count(_==1)
+    case None => 0
+  }
 
   def exchangeAce(isInRange: Int => Boolean): Player = {
 
@@ -25,15 +25,18 @@ class Player (h: Hand){
       else affect(fn(hand), counter -1)(fn)
 
     @tailrec
-    def find(hand: Hand, counter: Int): Hand ={
+    def exchange(hand: Hand, counter: Int): Hand ={
       if (counter == 0) return hand
-      val deletedAce: Hand = affect(hand, counter)(x => x diff Seq(1))
-      val addedEleven: Hand = affect(deletedAce, counter)(x => x :+ 11)
+      val deletedAce = affect(hand, counter)(x => x - 1)
+      val addedEleven = affect(deletedAce, counter)(x => x + 11)
 
       if (isInRange(addedEleven.sum)) addedEleven
-      else find(hand, counter -1)
+      else exchange(hand, counter -1)
     }
 
-    new Player(find(hand,aceCount))
+    hand match {
+      case Some(x) => new Player(exchange(x,countAce))
+      case None => new Player()
+    }
   }
 }
