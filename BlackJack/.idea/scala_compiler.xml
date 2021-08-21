@@ -7,5 +7,6 @@
     <profile name="sbt 2" modules="BlackJack">
       <option name="implicitConversions" value="true" />
     </profile>
+    <profile name="sbt 3" modules="oldblackJack" />
   </component>
 </project>
