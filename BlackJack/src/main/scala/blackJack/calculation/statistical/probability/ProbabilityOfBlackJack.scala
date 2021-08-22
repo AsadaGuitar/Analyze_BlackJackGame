@@ -14,5 +14,7 @@ trait ProbabilityOfBlackJack {
 
   def userWinProb: Option[Rational]
 
+  def userLoseProb: Option[Rational]
+
   def drawProb: Option[Rational]
 }

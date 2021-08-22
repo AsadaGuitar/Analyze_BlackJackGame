@@ -7,24 +7,48 @@ import scala.annotation.tailrec
 object BlackJackIO {
 
   @tailrec
-  private def read(): Hand ={
-    println("手札を入力してください。")
+  private def readInt(text: String): Int ={
+
+    println(s"${text}を入力してください。")
     val input = io.StdIn.readLine()
 
     try{
-      val tramp = input.toInt
-      new Hand(tramp)
+      val num = input.toInt
+      num
     }
     catch{
       case _: Exception =>
-        println("不正です。")
-        read()
+        println("数値を入力してください。")
+        readInt(text)
     }
   }
 
-  def readHand(deck: Deck): (Hand,Deck) ={
-    val hand = read()
-    (hand, deck diff hand.tramps)
+  @tailrec
+  def readDeckNum(): Int ={
+    val num = readInt("使用する山札の個数")
+    if (5 < num) readDeckNum()
+    else num
+  }
+
+  def readHand(text: String): Hand ={
+    val tramp: Tramp = {
+      val input = readInt(s"${text}の手札")
+      if (!(1 to 13).contains(input)) {
+        println("1~13の数値を入力してください。")
+        return readHand(text)
+      }
+      else input
+    }
+    new Hand(tramp)
+  }
+
+  def readBlackJackHand(text: String,deck: Deck): (Hand,Deck) ={
+    val hand = readHand(text)
+    val blackJackHand = {
+      if (10 < hand.tramps.head) new Hand(10)
+      else hand
+    }
+    (blackJackHand, deck diff blackJackHand.tramps)
   }
 
   @tailrec
