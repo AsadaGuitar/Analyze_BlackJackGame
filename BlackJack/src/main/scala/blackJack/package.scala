@@ -20,4 +20,6 @@ package object blackjack {
   case object InitDeck extends SystemCommand
 
   case object Finish extends SystemCommand
+
+
 }

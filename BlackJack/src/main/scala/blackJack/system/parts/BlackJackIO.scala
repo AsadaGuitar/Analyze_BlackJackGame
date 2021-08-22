@@ -8,6 +8,7 @@ object BlackJackIO {
 
   @tailrec
   private def read(): Hand ={
+    println("手札を入力してください。")
     val input = io.StdIn.readLine()
 
     try{
@@ -15,7 +16,9 @@ object BlackJackIO {
       new Hand(tramp)
     }
     catch{
-      case _: Exception => read()
+      case _: Exception =>
+        println("不正です。")
+        read()
     }
   }
 

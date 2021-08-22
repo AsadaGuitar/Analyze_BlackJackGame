@@ -2,7 +2,7 @@ package blackjack.calculation.statistical.probability
 
 import scala.annotation.tailrec
 
-class Rational(n: Long, d: Long){
+class Rational(n: BigInt, d: BigInt){
   require(d != 0)
 
   private val g = gcd(n.abs, d.abs)
@@ -14,9 +14,9 @@ class Rational(n: Long, d: Long){
   override def toString: String = s"$num/$denom"
 
   @tailrec
-  private def gcd(a: Long, b: Long): Long = if (b == 0) a else gcd(b, a % b)
+  private def gcd(a: BigInt, b: BigInt): BigInt = if (b == 0) a else gcd(b, a % b)
 
-  def get() = num / denom.toDouble
+  def get() = BigDecimal(num) / BigDecimal(denom)
 
   def +(that: Rational): Rational =
     new Rational(num * that.denom + that.num * denom, denom * that.denom)
@@ -38,6 +38,13 @@ class Rational(n: Long, d: Long){
 
 
   def < (that: Rational): Boolean = num * that.denom < that.num * denom
+
+  def < (that: Double): Boolean = get() < that
+
+  def > (that: Rational): Boolean = num * that.denom > that.num * denom
+
+  def > (that: Double): Boolean = get() > that
+
   def max(that: Rational): Rational = if (this < that) that else this
 
 }

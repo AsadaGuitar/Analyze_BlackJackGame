@@ -13,9 +13,8 @@ class Hand(ts: Tramps) {
 
   def tramps = _tramps
 
-  def this(ts: Tramp*) = this(ts)
-
   def this() = this(Seq.empty)
+  def this(t: Tramp) = this(Seq(t))
 
   def sum = tramps.sum
 

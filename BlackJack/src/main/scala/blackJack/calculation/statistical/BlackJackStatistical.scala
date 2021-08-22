@@ -14,17 +14,17 @@ class BlackJackStatistical(val userHand: Hand,
       case Nil => 1
       case head :: tail => head * loop(tail)
     }
-    if (ints.isEmpty) 0
+    if (ints.isEmpty) 1
     else loop(ints)
   }
 
-  private def calculateProb(hand: Hand): Rational = {
-    val r: List[Int] = (((deck.length - hand.length) + 1) to deck.length).toList
+  def calculateProb(hand: Hand,deck: Deck): Rational = {
+    val r: List[Int] = (((deck.length - hand.length) + 2) to deck.length).toList
     new Rational(1, productOfList(r).toLong)
   }
 
   override def toList: Seq[(Int,Rational)] =
-    for {h <- set} yield (h.sum, calculateProb(h))
+    for {h <- set} yield (h.sum, calculateProb(h,deck))
 
   override def toMap: Map[Int,Rational] = {
 

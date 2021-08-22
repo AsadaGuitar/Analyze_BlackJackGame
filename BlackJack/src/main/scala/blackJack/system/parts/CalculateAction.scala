@@ -23,12 +23,13 @@ object CalculateAction {
       val probabilityOfBlackJack = new BlackJackProbs(userHand.sum, deck, statistical)
 
       val strategy = new DetailsStrategy(probabilityOfBlackJack)
-
+      println("詳細結果")
       strategy.nextAction()
     }
     catch {
       case _: Exception =>
         val strategy = new BasicStrategy(userHand,dealerHand)
+        println("簡略結果")
         strategy.nextAction()
     }
 

@@ -11,7 +11,10 @@ trait PossibilityHandCalculator {
 
       val score: Int = hand.exchangeAce(isInRange).sum
 
-      if (17 <= score) Seq(hand)
+      if (17 <= score) {
+        val hands = Seq(hand)
+        hands
+      }
       else
         for{
           tramp <- deck
@@ -21,13 +24,17 @@ trait PossibilityHandCalculator {
 
   val asynchronousLoopHit =
     (hand: Hand, deck: Deck, isInRange: Int => Boolean) =>
-      Future(loopHit(hand,deck,isInRange))
+      Future(
+        if(17 <= hand.exchangeAce(isInRange).sum) Seq(hand)
+        else loopHit(hand,deck,isInRange))
 
   def parallelFindPossibility(hand: Hand, deck: Deck, isInRange: Int => Boolean) ={
 
     def parallelRun =
-      for{tramp <- deck} yield asynchronousLoopHit(hand + tramp, deck diff Seq(tramp), isInRange)
-
+      for{tramp <- deck} yield {
+        asynchronousLoopHit(hand + tramp, deck diff Seq(tramp), isInRange)
+      }
     Future.sequence(parallelRun)
   }
+
 }
