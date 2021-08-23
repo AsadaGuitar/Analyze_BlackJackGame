@@ -1,19 +1,20 @@
-import blackjack.Deck
-import blackjack.calculation.statistical.BlackJackStatisticalCreater
-import blackjack.calculation.statistical.probability.{BlackJackProbs, Rational}
-import blackjack.calculation.statistical.probability.strategy.{BasicStrategy, DetailsStrategy}
-import blackjack.system.parts.BlackJackIO.{readAction, readBlackJackHand, readDeckNum}
+import blackjack._
+import blackjack.system.flow.action.ActionFlow
+import blackjack.system.flow.calculation.CalculationFlowAbstract
+import blackjack.system.parts.BlackJackIO.readBlackJackHand
 
-import scala.concurrent.duration.DurationInt
+import scala.annotation.tailrec
+import scala.concurrent.duration.{DurationInt, FiniteDuration}
 import scala.language.postfixOps
 
+object Main {
 
-object Main extends App {
+  val useTramps = Seq(1,2,3,4,5,6,7,8,9,10,10,10,10)
 
+  implicit def exchangeStrArray(deck: Deck): Array[String] = deck.map(_.toString).toArray
 
-  println("Analyze_BlackJackを開始します。")
+  implicit val timeOut: FiniteDuration = 10 second
 
-  val action = mainFlow()
 
   def initDeck(deckNum: Int, tramps: Seq[Int]): Deck = {
     def addTramps(num: Int, ts: Seq[Int]): Seq[Int] = {
@@ -24,63 +25,31 @@ object Main extends App {
     else addTramps(deckNum * 4, tramps)
   }
 
-  def printResultRational(rational: Option[Rational], text: String): Unit =
-    rational match {
-      case Some(x) => println(s"$text : ${x.get().toFloat * 100} %")
-      case None => println(s"$text : 0 %")
+  @tailrec
+  def main(args: Array[String]): Unit = {
+
+    println("Analyze_BlackJackを開始します。")
+
+    val deck: Deck = args match {
+      case x if 0 < x.length => x.map(_.toInt).toSeq
+      case x => initDeck(1,useTramps)
     }
 
-  def mainFlow() ={
-
-    val useTramps = Seq(1,2,3,4,5,6,7,8,9,10,10,10,10)
-    val timeOut = 10 second
-
-    val deckNum = readDeckNum()
-    val deck = initDeck(deckNum,useTramps)
-
-    val (userHandA, deckDeletedUserHandA) = readBlackJackHand("ユーザー",deck)
-    val (userHandB, deckDeletedUserHandB) = readBlackJackHand("ユーザー",deckDeletedUserHandA)
-
-    val (dealerHand, deckDeletedDealerHand) = readBlackJackHand("ディーラ",deckDeletedUserHandB)
-
+    val (userHandA, deckDeletedUserHandA) = readBlackJackHand("ユーザー", deck)
+    val (userHandB, deckDeletedUserHandB) = readBlackJackHand("ユーザー", deckDeletedUserHandA)
+    val (dealerHand, deckDeletedDealerHand) = readBlackJackHand("ディーラ", deckDeletedUserHandB)
     val userHand = userHandA + userHandB
 
+    val calculator = new CalculationFlowAbstract(userHand,dealerHand,deckDeletedDealerHand)
+    val action = calculator.startCalculation()
 
-    val statisticalCreate =
-      new BlackJackStatisticalCreater(dealerHand,deckDeletedDealerHand,timeOut)
+    val actionFlow = ActionFlow.create(action,userHand,dealerHand,deckDeletedDealerHand)
 
-    val action = try{
+    val (command,completeDeck) = actionFlow.action()
 
-      println("計算を開始します。")
-      val statistical = statisticalCreate.create()
-      val probabilityOfBlackJack = new BlackJackProbs(userHand.sum, deck, statistical)
-
-      val strategy = new DetailsStrategy(probabilityOfBlackJack)
-
-      println("詳細計算完了")
-
-      printResultRational(probabilityOfBlackJack.accuracyProb,"正確性")
-      printResultRational(probabilityOfBlackJack.dealerBurstProb,"ディーラバースト率")
-      printResultRational(probabilityOfBlackJack.dealerWinProb,"ディーラ勝率")
-      printResultRational(probabilityOfBlackJack.dealerLoseProb, "ディーラ負率")
-      printResultRational(probabilityOfBlackJack.userBurstProb,"ユーザバースト率")
-      printResultRational(probabilityOfBlackJack.userWinProb,"ユーザ勝率")
-
-      strategy.nextAction()
+    command match {
+      case Continue => main(completeDeck)
+      case Finish => println("shut down Analyze_BlackJack_System...")
     }
-    catch {
-      case _: Exception =>
-
-        val strategy = new BasicStrategy(userHand,dealerHand)
-
-        println("簡略計算完了")
-        strategy.nextAction()
-    }
-
-    println(s"計算結果 : ${action}が最善手です。")
-
-    val userAction = readAction()
-
-    userAction
   }
 }

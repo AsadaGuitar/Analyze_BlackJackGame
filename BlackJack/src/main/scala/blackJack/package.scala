@@ -21,5 +21,4 @@ package object blackjack {
 
   case object Finish extends SystemCommand
 
-
 }

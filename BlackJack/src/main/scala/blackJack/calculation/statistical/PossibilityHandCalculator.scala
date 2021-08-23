@@ -32,7 +32,6 @@ trait PossibilityHandCalculator {
         else loopHit(hand,deck,isInRange))
     }
 
-
   def parallelFindPossibility(hand: Hand, deck: Deck, isInRange: Int => Boolean) ={
 
     def parallelRun =
@@ -41,5 +40,4 @@ trait PossibilityHandCalculator {
       }
     Future.sequence(parallelRun)
   }
-
 }

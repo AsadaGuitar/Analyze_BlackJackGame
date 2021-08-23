@@ -36,7 +36,6 @@ class Rational(n: BigInt, d: BigInt){
   def *(n: Int): Rational =
     new Rational(num * (n * denom), denom)
 
-
   def < (that: Rational): Boolean = num * that.denom < that.num * denom
 
   def < (that: Double): Boolean = get() < that
@@ -44,7 +43,5 @@ class Rational(n: BigInt, d: BigInt){
   def > (that: Rational): Boolean = num * that.denom > that.num * denom
 
   def > (that: Double): Boolean = get() > that
-
-  def max(that: Rational): Rational = if (this < that) that else this
 
 }

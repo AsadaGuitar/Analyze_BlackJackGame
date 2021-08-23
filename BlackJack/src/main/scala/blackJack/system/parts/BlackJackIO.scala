@@ -52,7 +52,7 @@ object BlackJackIO {
   }
 
   @tailrec
-  def readDealerHitHand(hands: Seq[Hand], deck: Deck): (Seq[Hand],Deck) ={
+  private def readDealerHitHand(hands: Seq[Hand], deck: Deck): (Seq[Hand],Deck) ={
 
     println("ディーラの手札を入力してください。\n終了する場合は\"q\"を入力してください。")
     val n = io.StdIn.readLine()
@@ -66,6 +66,10 @@ object BlackJackIO {
       println("入力値が不正です。")
       readDealerHitHand(hands, deck)
     }
+  }
+
+  def readDealerHitHand(deck: Deck): (Seq[Hand],Deck) ={
+    readDealerHitHand(Seq(), deck)
   }
 
   @tailrec
@@ -97,5 +101,4 @@ object BlackJackIO {
       readSystemCommand()
     }
   }
-
 }
