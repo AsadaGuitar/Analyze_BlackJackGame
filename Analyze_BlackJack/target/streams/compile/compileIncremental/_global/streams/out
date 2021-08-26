@@ -1,0 +1,6 @@
+[debug] [zinc] IncrementalCompile -----------
+[debug] IncrementalCompile.incrementalCompile
+[debug] previous = Stamps for: 28 products, 12 sources, 2 libraries
+[debug] current source = Set(${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/Hand.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/RateComputable.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandProbabilityCalculator.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/BasicStrategy.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/Strategy.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatistics.scala, ${BASE}/src/main/scala/blackJack/calculation/Rational.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] No changes

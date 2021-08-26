@@ -1,0 +1,19 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 10 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\calculation\strategy\BasicStrategy.scala:6:29 
+[error] 6 |  override def nextAction(): Action = Hit
+[error]   |                             ^^^^^^
+[error]   |                             Not found: type Action
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\calculation\strategy\BasicStrategy.scala:6:38 
+[error] 6 |  override def nextAction(): Action = Hit
+[error]   |                                      ^^^
+[error]   |                                      Not found: Hit
+[error] two errors found
+[error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 6 s, completed 2021/08/25 22:23:53
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

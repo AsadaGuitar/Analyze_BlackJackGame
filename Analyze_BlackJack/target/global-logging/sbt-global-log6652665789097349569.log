@@ -1,0 +1,31 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 13 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[warn] -- Feature Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\calculation\statistical\StatisticalCreater.scala:17:15 
+[warn] 17 |  implicit def joinTwoDimensions[T](ll: Seq[Seq[T]]): Seq[T] = for {l <- ll; r <- l} yield r
+[warn]    |               ^
+[warn]    |Definition of implicit conversion method joinTwoDimensions should be enabled
+[warn]    |by adding the import clause 'import scala.language.implicitConversions'
+[warn]    |or by setting the compiler option -language:implicitConversions.
+[warn]    |See the Scala docs for value scala.language.implicitConversions for a discussion
+[warn]    |why the feature should be explicitly enabled.
+[warn] -- [E129] Potential Issue Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\calculation\statistical\probability\strategy\DetailsStrategy.scala:11:35 
+[warn] 11 |      case Some(x) => if (x < 0.1) Hit
+[warn]    |                                   ^^^
+[warn]    |A pure expression does nothing in statement position; you may be omitting necessary parentheses
+[warn] -- [E129] Potential Issue Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\calculation\statistical\probability\strategy\DetailsStrategy.scala:15:36 
+[warn] 15 |      case Some(x)  => if (x > 0.7) Stand
+[warn]    |                                    ^^^^^
+[warn]    |A pure expression does nothing in statement position; you may be omitting necessary parentheses
+[warn] -- [E129] Potential Issue Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\calculation\statistical\probability\strategy\DetailsStrategy.scala:19:35 
+[warn] 19 |      case Some(x) => if (x > 0.8) Hit
+[warn]    |                                   ^^^
+[warn]    |A pure expression does nothing in statement position; you may be omitting necessary parentheses
+[warn] four warnings found
+[warn] four warnings found
+[info] done compiling
+[success] Total time: 9 s, completed 2021/08/25 21:47:59
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

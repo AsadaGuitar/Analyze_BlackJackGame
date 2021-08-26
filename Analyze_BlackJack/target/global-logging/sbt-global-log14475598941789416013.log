@@ -1,0 +1,21 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 10 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\calculation\statistics\ProbabilityStatistics.scala:12:6 
+[error] 12 |class HandProbsStatistics
+[error]    |      ^
+[error]    |class HandProbsStatistics needs to be abstract, since:
+[error]    |it has 2 unimplemented members.
+[error]    |/** As seen from class HandProbsStatistics, the missing signatures are as follows.
+[error]    | *  For convenience, these are usable as stub implementations.
+[error]    | */
+[error]    |  def toList: => Seq[(T, blackJack.calculation.Rational)] = ???
+[error]    |  def toMap: => Map[T, blackJack.calculation.Rational] = ???
+[error] one error found
+[error] one error found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 3 s, completed 2021/08/25 22:24:20
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
