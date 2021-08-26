@@ -1,9 +1,0 @@
-[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/BlackJack/}blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/BlackJack/}blackjack/test:products, None, None)
-[debug] Evaluating tasks: Compile / products, Test / products
-[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
-[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\BlackJack\target\scala-2.13\classes ...
-[info] done compiling
-[success] Total time: 0 s, completed 2021/08/10 5:32:35
-[debug] > Exec(idea-shell, None, None)
-[debug] > Exec(, None, None)
-[debug] > Exec(idea-shell, None, None)
