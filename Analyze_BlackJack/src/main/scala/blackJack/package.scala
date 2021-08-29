@@ -1,7 +1,10 @@
+import scala.annotation.tailrec
+
 package object blackJack {
 
   type Tramp = Int
   type Deck = Vector[Tramp]
+  type Hand = Seq[Tramp]
 
   abstract class Action
 
@@ -15,8 +18,8 @@ package object blackJack {
 
   case object Continue extends SystemCommand
 
-  case object InitDeck extends SystemCommand
+  case object Init extends SystemCommand
 
   case object Finish extends SystemCommand
-
+  
 }

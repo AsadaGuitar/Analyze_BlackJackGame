@@ -1,6 +1,38 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 28 products, 12 sources, 2 libraries
-[debug] current source = Set(${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/Hand.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/RateComputable.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandProbabilityCalculator.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/BasicStrategy.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/Strategy.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatistics.scala, ${BASE}/src/main/scala/blackJack/calculation/Rational.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
-[debug] No changes
+[debug] previous = Stamps for: 28 products, 10 sources, 2 libraries
+[debug] current source = Set(${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/Analyze_BlackJack.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatisticsCreater.scala, ${BASE}/src/main/scala/blackJack/package.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/HandProbabilityCalculator.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/BasicStrategy.scala, ${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala, ${BASE}/src/main/scala/blackJack/Analyze_BlackJack_IO.scala, ${BASE}/src/main/scala/blackJack/calculation/probabilityStatistics/ProbabilityStatistics.scala, ${BASE}/src/main/scala/blackJack/calculation/Rational.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] 
+[debug] Initial source changes:
+[debug] 	removed: Set()
+[debug] 	added: Set()
+[debug] 	modified: Set(${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set(blackJack.calculation.strategy.DetailsStrategy)
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(blackJack.calculation.strategy.DetailsStrategy)
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/blackJack/calculation/strategy/DetailsStrategy.scala)
+[debug] Initial set of included nodes: blackJack.calculation.strategy.DetailsStrategy
+[debug] compilation cycle 1
+[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[debug] Returning already retrieved and compiled bridge: C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.0.0\scala3-sbt-bridge-3.0.0.jar.
+[debug] [zinc] Running cached compiler 62ad9415 for Scala Compiler version 3.0.0
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.0.0\scala3-library_3-3.0.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.5\scala-library-2.13.5.jar
+[debug] 	-classpath
+[debug] 	C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-parallel-collections_3\1.0.3\scala-parallel-collections_3-1.0.3.jar
+[debug] Scala compilation took 0.3338256 s
+[info] done compiling
+[debug] New invalidations:
+[debug] Initial set of included nodes: 
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] Final step, transitive dependencies:
+[debug] 	Set()
+[debug] No classes were invalidated.

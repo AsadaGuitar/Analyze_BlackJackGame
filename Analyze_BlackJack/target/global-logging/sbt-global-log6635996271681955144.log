@@ -1,0 +1,22 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Main.scala:97:82 
+[error] 97 |        val probabilityStatistics = probabilityStatisticsCreater.create(timeout = 10 second)
+[error]    |                                                                                  ^^
+[error]    |postfix operator `second` needs to be enabled
+[error]    |by making the implicit value scala.language.postfixOps visible.
+[error]    |----
+[error]    |This can be achieved by adding the import clause 'import scala.language.postfixOps'
+[error]    |or by setting the compiler option -language:postfixOps.
+[error]    |See the Scaladoc for value scala.language.postfixOps for a discussion
+[error]    |why the feature needs to be explicitly enabled.
+[error] one error found
+[error] one error found
+[debug] Forcing garbage collection...
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 4 s, completed 2021/08/29 18:15:11
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

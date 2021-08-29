@@ -2,7 +2,7 @@ package blackJack.calculation.strategy
 
 import blackJack._
 
-class BasicStrategy(val user: Hand, val dealer: Hand) extends Strategy {
+object BasicStrategy { 
 
   private def hardHand(playerScore: Int, dealerScore: Int): Action = playerScore match {
     case score if score <= 8 => Hit
@@ -65,9 +65,9 @@ class BasicStrategy(val user: Hand, val dealer: Hand) extends Strategy {
       }
   }
 
-  override def nextAction() = user match {
-    case hand if hand.isExist(1) =>
-      val userScore = (user -1).sum
+  def bestAction(user: Hand, dealer: Hand) = user match {
+    case hand if hand.contains(1) =>
+      val userScore = (user diff Seq(1)).sum
       val dealerScore = dealer.sum
       softHand(userScore, dealerScore)
     case _ =>

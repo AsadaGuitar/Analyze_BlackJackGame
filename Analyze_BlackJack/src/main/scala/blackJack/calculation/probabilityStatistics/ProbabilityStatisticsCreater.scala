@@ -3,29 +3,75 @@ package blackJack.calculation.probabilityStatistics
 import blackJack.{Deck, Hand}
 import blackJack.calculation.Rational
 
+import collection.parallel.CollectionConverters.VectorIsParallelizable
+import scala.concurrent.{Await, Future}
+import scala.concurrent.duration.Duration
+import scala.concurrent.ExecutionContext.Implicits.global
+
+
+/*
+トレイト名     ProbabilityStatisticsCreater
+機能          確率統計を生成
+*/
 trait ProbabilityStatisticsCreater[T] {
 
-  def create(): ProbabilityStatistics[T]
+  /*
+  メソッド名   create
+  機能        確率統計の生成
+  引数        implicit timeout: Duration                                       タイムアウトの設定
+  戻値        Either[concurrent.TimeoutException,ProbabilityStatistics[T]]      生成した確率統計
+  */
+  def create(implicit timeout: Duration): Either[concurrent.TimeoutException,ProbabilityStatistics[T]]
 }
 
+/*
+クラス名      HandProbabilityStatisticsCreater
+機能         手札の確率統計を生成
+引数         dealerHand: Hand       ディーラの手札
+            usingDeck: Deck         使用中の山札
+*/
 class HandProbabilityStatisticsCreater(dealerHand: Hand, usingDeck: Deck) 
   extends ProbabilityStatisticsCreater[Int] 
     with HandProbabilityCalculator 
     with HandStatisticsCreater {
 
-  private val _hand = dealerHand
-  def hand = _hand
+  /*
+  メソッド名     fixDimensions
+  機能          要素の型が同一の二次元リストをリストに変換
+  引数          ll: Seq[Seq[A]]   二次元リスト
+  戻値          Seq[A]            リスト
+  */
+  private def fixDimensions[A](ll: Seq[Seq[A]]): Seq[A] = for {l <- ll; e <- l} yield e
 
-  private val _deck = usingDeck
-  def deck = _deck
-  
-  override def create(): ProbabilityStatistics[Int] ={
+  /*
+  メソッド名   create
+  機能        手札の確率統計を生成
+  引数        implicit timeout: Duration                                          タイムアウトの設定
+  戻値        Either[concurrent.TimeoutException,ProbabilityStatistics[Int]]      生成した確率統計
+  */
+  override def create(implicit timeout: Duration): Either[concurrent.TimeoutException,ProbabilityStatistics[Int]]={
 
-    def probsList: Vector[(Int,Rational)] = 
+    //統計を取得し、各情報を集計
+    @throws[concurrent.TimeoutException]
+    def probsList(): Seq[(Int,Rational)] = {
+      //統計を並列、非同期処理で取得
+      val asynchronousResult: Future[Seq[Seq[Hand]]] = paralellLoopHit(dealerHand,usingDeck)
+      //非同期の待機時間が設定されたタイムアウトの時間を超過した場合、例外が発生
+      val statistics = Await.result(asynchronousResult, timeout)
+      //統計の確率を集計
       for {
-        hand <- paralellLoopHit(hand, deck)
-      } yield (hand.sum, calculateProb(hand,deck))
-
-    probsList.foldLeft(new ProbabilityStatistics[Int]())((acc,x) => acc :+ x)
+        hand <- fixDimensions(statistics)
+      } yield (hand.sum, calculateProb(hand,usingDeck))
+    }
+    
+    try {
+      //確率統計を生成
+      val probs = probsList()
+      Right(ProbabilityStatistics(probs))
+    }
+    catch {
+      //確率統計生成時、例外が発生した場合はEither.Leftを返却
+      case e : concurrent.TimeoutException => Left(e)
+    }
   }
 }
