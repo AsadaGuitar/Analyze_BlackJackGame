@@ -1,4 +1,2 @@
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_3/2.13.0/akka-slf4j_3-2.13.0.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-actor-typed_3/2.13.0/akka-actor-typed_3-2.13.0.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-actor-typed_3/2.13.0/akka-actor-typed_3-2.13.0.pom.sha1
-[debug] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_3/2.13.0/akka-slf4j_3-2.13.0.pom.sha1
+[debug] downloaded https://repo1.maven.org/maven2/org/typelevel/cats-effect_3/2.5.2/cats-effect_3-2.5.2.pom
+[debug] downloaded https://repo1.maven.org/maven2/org/typelevel/cats-effect_3/2.5.2/cats-effect_3-2.5.2.jar

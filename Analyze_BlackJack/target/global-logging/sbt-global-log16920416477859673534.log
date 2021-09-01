@@ -1,0 +1,85 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 10 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack.scala:169:6 
+[error] 169 |      for {
+[error]     |      ^
+[error]     |      Found:    cats.effect.IO[Vector[blackJack.Tramp]]
+[error]     |      Required: blackJack.Deck
+[error] 170 |        announceUserHand <- IO(println("[手札入力] : ユーザの手札を入力してください。"))
+[error] 171 |        //現在の手札を取得
+[error] 172 |
+[error] 173 |        hitHand <- readHand()
+[error] 174 |        afterHitHand = user ++ hitHand
+[error] 175 |        //ヒット分を削除した山札を取得
+[error] 176 |
+[error] 177 |        deckDeleted = deck diff hitHand
+[error] 178 |        //ディーラのスコアの確率統計を作成、分析し、最善手を取得
+[error] 179 |
+[error] 180 |        bestAction = calculate(afterHitHand, dealer, deckDeleted)
+[error] 181 |        printBestHand <- IO(println(s"最善手は${bestAction}です。"))
+[error] 182 |        announceUserAction <- IO(println("[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"))
+[error] 183 |        userAction <- readAction()
+[error] 184 |      } yield {
+[warn] -- [E129] Potential Issue Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack.scala:195:8 
+[warn] 195 |        announceUserHand
+[warn]     |        ^^^^^^^^^^^^^^^^
+[warn]     |A pure expression does nothing in statement position; you may be omitting necessary parentheses
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack.scala:190:6 
+[error] 190 |      for{
+[error]     |      ^
+[error]     |      Found:    cats.effect.IO[Vector[blackJack.Tramp]]
+[error]     |      Required: blackJack.Deck
+[error] 191 |        announceUserHand <- IO(println("[手札入力] : ユーザの手札を入力してください。"))
+[error] 192 |        //ユーザがヒットした手札を取得
+[error] 193 |
+[error] 194 |        hitHand <- readHand()
+[error] 195 |      } yield {
+[error] 196 |        announceUserHand
+[error] 197 |        deck diff user
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:43:16 
+[error] 43 |        readHand()
+[error]    |        ^^^^^^^^^^
+[error]    |        Found:    cats.effect.IO[blackJack.Hand]
+[error]    |        Required: Seq[blackJack.Tramp]
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:65:20 
+[error] 65 |          readAction()
+[error]    |          ^^^^^^^^^^^^
+[error]    |          Found:    cats.effect.IO[blackJack.Action]
+[error]    |          Required: blackJack.Action
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:85:71 
+[error] 85 |          case in if (1 to 10).map(_.toString).contains(in) => addTramp(tramps :+ in.toInt)
+[error]    |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error]    |                          Found:    cats.effect.IO[Seq[blackJack.Tramp]]
+[error]    |                          Required: Seq[blackJack.Tramp]
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:89:20 
+[error] 89 |            addTramp(tramps)
+[error]    |            ^^^^^^^^^^^^^^^^
+[error]    |            Found:    cats.effect.IO[Seq[blackJack.Tramp]]
+[error]    |            Required: Seq[blackJack.Tramp]
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:106:59 
+[error] 106 |      case i if i.equals(Continue.toString.toUpperCase) => Continue
+[error]     |                                                           ^^^^^^^^
+[error]     |                     Found:    blackJack.Continue.type
+[error]     |                     Required: cats.effect.IO[blackJack.SystemCommand]
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:107:55 
+[error] 107 |      case i if i.equals(Init.toString.toUpperCase) => Init
+[error]     |                                                       ^^^^
+[error]     |                     Found:    blackJack.Init.type
+[error]     |                     Required: cats.effect.IO[blackJack.SystemCommand]
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\blackJack\Analyze_BlackJack_IO.scala:108:57 
+[error] 108 |      case i if i.equals(Finish.toString.toUpperCase) => Finish
+[error]     |                                                         ^^^^^^
+[error]     |                     Found:    blackJack.Finish.type
+[error]     |                     Required: cats.effect.IO[blackJack.SystemCommand]
+[warn] one warning found
+[error] 9 errors found
+[warn] one warning found
+[error] 9 errors found
+[debug] Forcing garbage collection...
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 4 s, completed 2021/08/31 0:35:50
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

@@ -34,15 +34,7 @@ class HandProbabilityStatisticsCreater(dealerHand: Hand, usingDeck: Deck)
   extends ProbabilityStatisticsCreater[Int] 
     with HandProbabilityCalculator 
     with HandStatisticsCreater {
-
-  /*
-  メソッド名     fixDimensions
-  機能          要素の型が同一の二次元リストをリストに変換
-  引数          ll: Seq[Seq[A]]   二次元リスト
-  戻値          Seq[A]            リスト
-  */
-  private def fixDimensions[A](ll: Seq[Seq[A]]): Seq[A] = for {l <- ll; e <- l} yield e
-
+  
   /*
   メソッド名   create
   機能        手札の確率統計を生成
@@ -60,7 +52,7 @@ class HandProbabilityStatisticsCreater(dealerHand: Hand, usingDeck: Deck)
       val statistics = Await.result(asynchronousResult, timeout)
       //統計の確率を集計
       for {
-        hand <- fixDimensions(statistics)
+        hand <- statistics.flatten
       } yield (hand.sum, calculateProb(hand,usingDeck))
     }
     

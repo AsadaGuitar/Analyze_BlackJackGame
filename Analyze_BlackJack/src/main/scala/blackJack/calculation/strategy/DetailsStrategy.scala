@@ -41,9 +41,9 @@ object DetailsStrategy {
 
 class DetailsStrategy(probabilityStatistics: ProbabilityStatistics[Int]) {
   import DetailsStrategy._
-
-  private implicit def probs: ProbabilityStatistics[Int] = probabilityStatistics
-
+  
+  private implicit val probs: ProbabilityStatistics[Int] = probabilityStatistics
+  
   private implicit def getRate(rational: Option[Rational]): BigDecimal = rational match {
     case Some(x) => x.get()
     case _ => 0

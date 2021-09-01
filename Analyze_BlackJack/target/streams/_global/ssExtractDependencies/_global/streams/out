@@ -1,19 +1,13 @@
-[error] sbt.librarymanagement.ResolveException: Error downloading com.typesafe.akka:akka-actor-typed_3:2.13.0
-[error]   Not found
-[error]   Not found
-[error]   not found: C:\Users\soroc\.ivy2\localcom.typesafe.akka\akka-actor-typed_3\2.13.0\ivys\ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/com/typesafe/akka/akka-actor-typed_3/2.13.0/akka-actor-typed_3-2.13.0.pom
-[error] Error downloading com.typesafe.akka:akka-slf4j_3:2.13.0
-[error]   Not found
-[error]   Not found
-[error]   not found: C:\Users\soroc\.ivy2\localcom.typesafe.akka\akka-slf4j_3\2.13.0\ivys\ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_3/2.13.0/akka-slf4j_3-2.13.0.pom
-[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:258)
-[error] 	at lmcoursier.CoursierDependencyResolution.$anonfun$update$38(CoursierDependencyResolution.scala:227)
-[error] 	at scala.util.Either$LeftProjection.map(Either.scala:573)
-[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:227)
-[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:60)
-[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:59)
+[error] java.lang.RuntimeException: found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
+[error] 
+[error] 	* org.typelevel:cats-effect_3:3.2.2 (early-semver) is selected over 2.5.1
+[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.2)
+[error] 	    +- io.monix:monix-catnap_3:3.4.0                      (depends on 2.5.1)
+[error] 
+[error] 
+[error] this can be overridden using libraryDependencySchemes or evictionErrorLevel
+[error] 	at scala.sys.package$.error(package.scala:30)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:89)
 [error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$12(LibraryManagement.scala:133)
 [error] 	at sbt.util.Tracked$.$anonfun$lastOutput$1(Tracked.scala:73)
 [error] 	at sbt.internal.LibraryManagement$.$anonfun$cachedUpdate$20(LibraryManagement.scala:146)
@@ -38,13 +32,11 @@
 [error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
 [error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 [error] 	at java.base/java.lang.Thread.run(Thread.java:832)
-[error] (ssExtractDependencies) sbt.librarymanagement.ResolveException: Error downloading com.typesafe.akka:akka-actor-typed_3:2.13.0
-[error]   Not found
-[error]   Not found
-[error]   not found: C:\Users\soroc\.ivy2\localcom.typesafe.akka\akka-actor-typed_3\2.13.0\ivys\ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/com/typesafe/akka/akka-actor-typed_3/2.13.0/akka-actor-typed_3-2.13.0.pom
-[error] Error downloading com.typesafe.akka:akka-slf4j_3:2.13.0
-[error]   Not found
-[error]   Not found
-[error]   not found: C:\Users\soroc\.ivy2\localcom.typesafe.akka\akka-slf4j_3\2.13.0\ivys\ivy.xml
-[error]   not found: https://repo1.maven.org/maven2/com/typesafe/akka/akka-slf4j_3/2.13.0/akka-slf4j_3-2.13.0.pom
+[error] (ssExtractDependencies) found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
+[error] 
+[error] 	* org.typelevel:cats-effect_3:3.2.2 (early-semver) is selected over 2.5.1
+[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.2)
+[error] 	    +- io.monix:monix-catnap_3:3.4.0                      (depends on 2.5.1)
+[error] 
+[error] 
+[error] this can be overridden using libraryDependencySchemes or evictionErrorLevel
