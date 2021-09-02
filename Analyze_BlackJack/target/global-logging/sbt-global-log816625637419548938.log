@@ -1,0 +1,27 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 12 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E040] Syntax Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:54:2 
+[error] 54 |  }
+[error]    |  ^
+[error]    |  ')' expected, but '}' found
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:70:27 
+[error] 70 |      userHandA <- readInt(userHandMsg, handErrMsg, handFilter)
+[error]    |                           ^^^^^^^^^^^
+[error]    |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:131:29 
+[error] 131 |          hitHand <- readInt(userHandMsg,handErrMsg,handFilter)
+[error]     |                             ^^^^^^^^^^^
+[error]     |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:151:29 
+[error] 151 |          hitHand <- readInt(userHandMsg, handErrMsg, handFilter)
+[error]     |                             ^^^^^^^^^^^
+[error]     |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
+[error] four errors found
+[error] four errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 0 s, completed 2021/09/02 22:41:56
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

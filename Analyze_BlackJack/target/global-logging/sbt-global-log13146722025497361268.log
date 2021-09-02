@@ -1,4 +1,7 @@
-[debug] Acquiring lock on file C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project\target\.sbt-compilation-infos\analyze_blackjack-compile\.sbt-idea-lock ...
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 12 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
 [error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:73:27 
 [error] 73 |      userHandA <- readInt(userHandMsg, handErrMsg, handFilter)
 [error]    |                           ^^^^^^^^^^^
@@ -13,4 +16,8 @@
 [error]     |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
 [error] three errors found
 [error] three errors found
-[debug] Releasing lock on file C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project\target\.sbt-compilation-infos\analyze_blackjack-compile\.sbt-idea-lock.
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 0 s, completed 2021/09/02 22:43:00
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

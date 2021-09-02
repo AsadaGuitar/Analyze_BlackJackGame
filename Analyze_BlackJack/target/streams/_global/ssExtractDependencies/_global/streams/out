@@ -1,7 +1,7 @@
 [error] java.lang.RuntimeException: found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
 [error] 
-[error] 	* org.typelevel:cats-effect_3:3.2.2 (early-semver) is selected over 2.5.1
-[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.2)
+[error] 	* org.typelevel:cats-effect_3:3.2.5 (early-semver) is selected over 2.5.1
+[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.5)
 [error] 	    +- io.monix:monix-catnap_3:3.4.0                      (depends on 2.5.1)
 [error] 
 [error] 
@@ -34,8 +34,8 @@
 [error] 	at java.base/java.lang.Thread.run(Thread.java:832)
 [error] (ssExtractDependencies) found version conflict(s) in library dependencies; some are suspected to be binary incompatible:
 [error] 
-[error] 	* org.typelevel:cats-effect_3:3.2.2 (early-semver) is selected over 2.5.1
-[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.2)
+[error] 	* org.typelevel:cats-effect_3:3.2.5 (early-semver) is selected over 2.5.1
+[error] 	    +- default:analyze_blackjack_3:0.1                    (depends on 3.2.5)
 [error] 	    +- io.monix:monix-catnap_3:3.4.0                      (depends on 2.5.1)
 [error] 
 [error] 

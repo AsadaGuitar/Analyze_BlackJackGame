@@ -1,0 +1,88 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 12 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:71:20 
+[error] 71 |      userAction <- readAction(actionMsg,actionErrMsg)
+[error]    |                    ^^^^^^^^^^
+[error]    |                    Not found: readAction
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:128:24 
+[error] 128 |          userAction <- readAction(actionMsg,actionErrMsg)
+[error]     |                        ^^^^^^^^^^
+[error]     |                        Not found: readAction
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:133:41 
+[error] 133 |        result.flatMap(x => actionFlow(x._1, x._2, x._3, x._4))
+[error]     |                                       ^^^^
+[error]     |value _1 is not a member of Nothing, but could be made available as an extension method.
+[error]     |
+[error]     |One of the following imports might fix the problem:
+[error]     |
+[error]     |  import cats.implicits.showInterpolator
+[error]     |  import cats.syntax.all.showInterpolator
+[error]     |  import cats.syntax.show.showInterpolator
+[error]     |
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:133:47 
+[error] 133 |        result.flatMap(x => actionFlow(x._1, x._2, x._3, x._4))
+[error]     |                                             ^^^^
+[error]     |value _2 is not a member of Nothing, but could be made available as an extension method.
+[error]     |
+[error]     |One of the following imports might make progress towards fixing the problem:
+[error]     |
+[error]     |  import concurrent.duration.pairIntToDuration
+[error]     |  import concurrent.duration.pairLongToDuration
+[error]     |
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:133:53 
+[error] 133 |        result.flatMap(x => actionFlow(x._1, x._2, x._3, x._4))
+[error]     |                                                   ^^^^
+[error]     |                                   value _3 is not a member of Nothing
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:133:59 
+[error] 133 |        result.flatMap(x => actionFlow(x._1, x._2, x._3, x._4))
+[error]     |                                                         ^^^^
+[error]     |                                   value _4 is not a member of Nothing
+[error] -- [E050] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:136:20 
+[error] 136 |      case Stand => IO(deck)
+[error]     |                    ^^
+[error]     |     object IO in package com.analysis.common does not take parameters
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:159:43 
+[error] 159 |    val probabilityStatisticsCreater = new HandProbabilityStatisticsCreater(dealer, deck)
+[error]     |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error]     |                      Not found: type HandProbabilityStatisticsCreater
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:167:16 
+[error] 167 |        println(x)
+[error]     |                ^
+[error]     |                Not found: x
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:168:50 
+[error] 168 |        val detailsStrategy = new DetailsStrategy(x)
+[error]     |                                                  ^
+[error]     |                                                  Not found: x
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\io\BlackJackIO.scala:22:4 
+[error] 22 |    putStrLn(msg) *>
+[error]    |    ^^^^^^^^
+[error]    |    Not found: putStrLn
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\io\BlackJackIO.scala:48:4 
+[error] 48 |    putStrLn(msg) *> 
+[error]    |    ^^^^^^^^
+[error]    |    Not found: putStrLn
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\io\BlackJackIO.scala:81:4 
+[error] 81 |    putStrLn(msg) *> 
+[error]    |    ^^^^^^^^
+[error]    |    Not found: putStrLn
+[error] -- [E050] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\IO.scala:13:40 
+[error] 13 |  def putStrLn(str: String): IO[Unit] = IO(println(str))
+[error]    |                                        ^^
+[error]    |       object IO in package com.analysis.common does not take parameters
+[error] -- [E050] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\IO.scala:20:29 
+[error] 20 |  def readLn(): IO[String] = IO(io.StdIn.readLine())
+[error]    |                             ^^
+[error]    |       object IO in package com.analysis.common does not take parameters
+[error] -- [E050] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\IO.scala:37:10 
+[error] 37 |          IO(ln.toInt)
+[error]    |          ^^
+[error]    |       object IO in package com.analysis.common does not take parameters
+[error] 16 errors found
+[error] 16 errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 5 s, completed 2021/09/02 22:00:04
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
