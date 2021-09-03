@@ -1,13 +1,13 @@
 package com.analysis.common.util
 
 
-implicit class RichAnalysisSeq[I <: Seq[A], A](l: I) {
+implicit class RichSequence[I <: Seq[A], A](l: I) {
   
   def :-(that: A): I = l.diff(Seq(that))
 
-  def foldProduct: BigInt = {
+  def foldProduct: Long = {
     //先頭要素から各要素の積を求める
-    def loop(ints: I): BigInt = ints match {
+    def loop(ints: I): Long = ints match {
       case Nil => 1
       case head :: tail => head * loop(tail)
     }
