@@ -37,7 +37,7 @@ object Analyze_BlackJack extends IOApp{
     putStrLn(msg) *>
       readAction().flatMap(x => x match {
         case Right(a) => IO(a)
-        case Left(_)  => putStrLn(mrrMsg) *> readActionRepetition()
+        case Left(_)  => putStrLn(errMsg) *> readActionRepetition()
       })
   }
 
@@ -45,7 +45,7 @@ object Analyze_BlackJack extends IOApp{
     putStrLn(msg) *>
       readSystemCommand().flatMap(x => x match {
         case Right(a) => IO(a)
-        case Left(_)  => putStrLn(mrrMsg) *> readActionRepetition()
+        case Left(_)  => putStrLn(errMsg) *> readActionRepetition()
       })
   }
 
@@ -142,9 +142,9 @@ object Analyze_BlackJack extends IOApp{
             //読込を終了する文字列を受取った場合、リストを返却
             case ln if (ln == period) => IO(tramps)
             //指定の文字列を受取った場合、リストに追加し再度実行
-            case ln if (filter(ln)) => function(hand :+ ln.toInt)
+            case ln if (filter(ln))   => function(hand :+ ln.toInt)
             //不正な文字列を受取った場合、例外メッセージを出力し再度実行
-            case _ => putStrLn(errMsg) *> function(hand)
+            case _                    => putStrLn(errMsg) *> function(hand)
           })
       }
       function(Nil)
