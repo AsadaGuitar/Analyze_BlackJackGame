@@ -6,7 +6,7 @@ import com.analysis.common.calculation.{ProbabilityStatistics, ProbsCreater, Rat
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
 
-import com.analysis.common.calculation.ProbsMaker
+import com.analysis.common.calculation._
 
  /*
 クラス名      HandProbabilityStatisticsCreater
@@ -24,26 +24,22 @@ class HandProbsCreater(dealerHand: Hand, usingDeck: Deck)
    引数        implicit timeout: Duration                                          タイムアウトの設定
    戻値        Either[concurrent.TimeoutException,ProbabilityStatistics[Int]]      生成した確率統計
    */
-   override def create(implicit timeout: Duration): Either[concurrent.TimeoutException,ProbabilityStatistics[Int]]={
+   override def create(implicit timeout: Duration): Either[concurrent.TimeoutException, Probs[Int]]={
      
-     //統計を取得し、各情報を集計
-     
-     //メソッドを統合する
-     @throws[concurrent.TimeoutException]
-     def getProbabilitys(): Seq[(Int,Rational)] = {
+     try {
        //統計を並列、非同期処理で取得
        val asynchronousResult: Future[Seq[Seq[Hand]]] = paralellLoopHit(dealerHand,usingDeck)
+       
        //非同期の待機時間が設定されたタイムアウトの時間を超過した場合、例外が発生
        val statistics = Await.result(asynchronousResult, timeout)
+       
        //統計の確率を集計
-       for {
+       val probsList = for {
          hand <- statistics.flatten
        } yield (hand.sum, calculateProb(hand,usingDeck))
-     }
-
-     try {
+       
        //確率統計を生成
-       Right(probsList().toProbs)
+       Right(probsList.toProbs)
      }
      catch {
        //確率統計生成時、例外が発生した場合はEither.Leftを返却

@@ -1,11 +1,13 @@
 package com.analysis.blackJack.app
 
 import com.analysis.common._
-import com.analysis.common.AnalysisIO._
+import com.analysis.common.io.MonadicIO._
+import com.analysis.common.util.RichSequence
 import com.analysis.blackJack._
 import com.analysis.blackJack.io.BlackJackIO._
 import com.analysis.blackJack.calculation.HandProbsCreater
 import com.analysis.blackJack.strategy.{BasicStrategy, DetailsStrategy}
+import com.analysis.blackJack.util.DeckUtility._
 
 import cats.effect.IO
 import cats.effect.IOApp
@@ -23,42 +25,61 @@ import scala.language.postfixOps
 */
 object Analyze_BlackJack extends IOApp{
 
+  def readHandRepetition(msg: String, errMsg: String, filter: String => Boolean): IO[Int] ={
+    putStrLn(msg) *>
+      readInt(user).flatMap(x => x match {
+        case Right(x) if (filter(x)) => IO(x)
+        case Left(_)                 => putStrLn(errMsg) *> hitHand()
+      })
+  }
+
+  def readActionRepetition(msg: String, errMsg: String): IO[Action] = {
+    putStrLn(msg) *>
+      readAction().flatMap(x => x match {
+        case Right(a) => IO(a)
+        case Left(_)  => putStrLn(mrrMsg) *> readActionRepetition()
+      })
+  }
+
+  def readSystemCommandRepetition(msg: String, errMsg: String): IO[SystemCommand] = {
+    putStrLn(msg) *>
+      readSystemCommand().flatMap(x => x match {
+        case Right(a) => IO(a)
+        case Left(_)  => putStrLn(mrrMsg) *> readActionRepetition()
+      })
+  }
 
   override def run(args: List[String]) = {
     (putStrLn("Welcome to Analyze_BlackJack") *> init()).as(ExitCode.Success)
   }
-  
+
   /*
-  メソッド名   init
-  機能        システム(山札)の初期化
+  メソッド名    init
+  機能         システム(山札)の初期化
               mainFlowの実行
   */
   def init(): IO[Unit] = {
 
-    val deckMsg = "[山札初期化] : 山札の個数、1 ~ 5 を入力してください。"
+    val deckMsg    = "[山札初期化] : 山札の個数、1 ~ 5 を入力してください。"
     val deckErrMsg = "入力値が不正です。"
     val handFilter: String => Boolean = (x: String) => (1 to 5).map(_.toString).contains(x)
 
-    val inputNum = for{
-      msg <- putStrLn(deckMsg)
-      num <- readInt()
+    val inputNum: IO[Either[NumberFormatException,Int]] = for{
+      printMsg <- putStrLn(deckMsg)
+      num      <- readInt()
     } yield num
 
     inputNum.flatMap(x => x match {
       case Right(n) => 
         if (handFilter(n)){
           val deck = createDeck(n)
-          if (deck.nonEmpty) {
-            mainFlow(deck.get)
-          }
-          else {
-            putStrLn(deckErrMsg) *> init()
-          }
+          if (deck.nonEmpty) mainFlow(deck.get)
+          else putStrLn(deckErrMsg) *> init()
         }
         else {
           putStrLn(deckErrMsg) *> init()
         }
-      case _ => putStrLn(deckErrMsg) *> init()
+      case Left(_) => putStrLn(deckErrMsg) *> init()
     })
   }
 
@@ -69,50 +90,95 @@ object Analyze_BlackJack extends IOApp{
   */
   def mainFlow(deck: Deck): IO[Unit] = {
 
-    val userHandMsg = "[手札入力] : ユーザの手札を一枚ずつ入力してください。"
+    val userHandMsg   = "[手札入力] : ユーザの手札を一枚ずつ入力してください。"
     val dealerHandMsg = "[手札入力] : ディーラの手札を入力してください。"
+    val handErrMsg    = "[入力値不正] : 1 ~ 10 の数値を入力してください。"
     val handFilter: String => Boolean = (x: String) => (1 to 10).map(_.toString).contains(x)
-    val handErrMsg = "[入力値不正] : 1 ~ 10 の数値を入力してください。"
-    
-    for {
 
-      userHandA <- readInt(userHandMsg, handErrMsg, handFilter)
-      userHandB <- readInt(userHandMsg, handErrMsg, handFilter)
+    val userHand: IO[Hand] = for {
+      x <- readHandRepetition(userHandMsg, handErrMsg, handFilter)
+      y <- readHandRepetition(userHandMsg, handErrMsg, handFilter)
+    } yield Seq(x,y)
 
-      dealerHand <- readInt(dealerHandMsg, handErrMsg, handFilter)
+    val dealerHand: IO[Hand] = readHandRepetition(dealerHandMsg, handErrMsg, handFilter)
 
-      bestHand = calculate(Seq(userHandA,userHandB), Seq(dealerHand), deck)
+    val deckFirstDeleted: IO[Hand] = for {
+      user   <- userHand
+      dealer <- dealerHand
+    } yield deck diff (user :+ dealer)
 
+    def printBestHand() = for{
+      user   <- userHand
+      dealer <- dealerHand
+      deck   <- deckFirstDeleted
+      bestHand = calculateFlow(user, dealer, deck)
       _ <- putStrLn(s"最善手は${bestHand}です。")
+    } yield ()
 
-      actionMsg = "[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"
-      actionErrMsg = "<<入力値不正>>"
-      userAction <- readAction(actionMsg,actionErrMsg)
 
-      actionDeck <- actionFlow(Seq(userHandA,userHandB), Seq(dealerHand), deck, userAction)
+    val actionMsg    = "[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"
+    val actionErrMsg = "<<入力値不正>>"
 
-      dealerHitHandPeriod = "q"
-      dealerHitHandMsg = s"ディーラがHitした手札を一枚ずつ入力してください。\n終了する場合は\"${dealerHitHandPeriod}\"を入力してください。"
-      dealerHitHandErrMsg = handErrMsg
+    val userAction = readActionRepetition(actionMsg,actionErrMsg)
 
-      dealerHitHand <- readHandRepetition(dealerHitHandMsg, dealerHitHandErrMsg, dealerHitHandPeriod, handFilter)
-      dealerHandMsg = (dealerHand +: dealerHitHand).mkString("[", ",", "]")
-      _ <- putStrLn(s"ディーラの手札は ${dealerHandMsg} でした。")
-
-      completedDeck = actionDeck diff Seq(dealerHitHand)
-
-      systemCommandMsg = "\"Continue\",\"Init\",\"Finish\"のいずれかを入力してください。"
-      systemCommandErrMsg = "<<入力値不正>>"
-      systemCommand <- readSystemCommand(systemCommandMsg, systemCommandErrMsg)
-
-      nextFlow <- systemCommand match {
-        case Continue => mainFlow(completedDeck)
-        case Init => init()
-        case Finish => IO(println("終了します。"))
-      }
-    } yield {
-      nextFlow
+    val deckCompletedAction = {
+      userHand.flatMap(user =>
+        dealerHand.flatMap(dealer =>
+          deckFirstDeleted.flatMap(deck =>
+            userAction.flatMap(action => actionFlow(user, dealer, deck, action)))))
     }
+
+
+    val dealerHitHandPeriod = "q"
+    val dealerHitHandMsg    = s"""|ディーラがHitした手札を一枚ずつ入力してください。
+                                  |終了する場合は\"${dealerHitHandPeriod}\"を入力してください。"""
+    val dealerHitHandErrMsg = "[入力値不正] : 1 ~ 10 の数値を入力してください。"
+
+    def readDealerHitHand(msg: String, errMsg: String, period: String): IO[Hand] = {
+      def function(hand: Hand): IO[Hand] = {
+        putStrLn(msg) *>
+          //文字列読込
+          readLn().flatMap(line => line match {
+            //読込を終了する文字列を受取った場合、リストを返却
+            case ln if (ln == period) => IO(tramps)
+            //指定の文字列を受取った場合、リストに追加し再度実行
+            case ln if (filter(ln)) => function(hand :+ ln.toInt)
+            //不正な文字列を受取った場合、例外メッセージを出力し再度実行
+            case _ => putStrLn(errMsg) *> function(hand)
+          })
+      }
+      function(Nil)
+    }
+
+    val dealerHitHand: IO[Hand] =
+      readDealerHitHand(dealerHitHandMsg, dealerHitHandErrMsg, dealerHitHandPeriod)
+
+    val dealerHandCompleted: IO[Hand] = for {
+      x <- dealerHand
+      y <- dealerHitHand
+    } yield x ++ y
+
+    val deckCompletedDealerHit = for {
+      hand <- dealerHandCompleted
+      deck <- deckCompletedAction
+    } yield deck diff hand
+
+    def printDealerHand(): IO[Unit] = for {
+      hand  <- dealerHandCompleted
+      print <- putStrLn(s"ディーラの手札は ${hand.mkString("[", ",", "]")} でした。")
+    } yield ()
+
+
+    val systemCommandMsg    = "\"Continue\",\"Init\",\"Finish\"のいずれかを入力してください。"
+    val systemCommandErrMsg = "<<入力値不正>>"
+
+    val systemCommand = readSystemCommandRepetition(systemCommandMsg, systemCommandErrMsg)
+
+    systemCommand.flatMap(cmd => cmd match {
+      case Continue => mainFlow(completedDeck)
+      case Init     => init()
+      case Finish   => IO(println("終了します。"))
+    })
   }
 
   /*
@@ -126,41 +192,37 @@ object Analyze_BlackJack extends IOApp{
   */
   def actionFlow(user: Hand, dealer: Hand, deck: Deck, action: Action): IO[Deck] = {
 
-    val userHandMsg = "[手札入力] : ユーザの手札を一枚ずつ入力してください。"
+    val handMsg    = "[手札入力] : ユーザの手札を一枚ずつ入力してください。"
     val handErrMsg = "[入力値不正] : 1 ~ 10 の数値を入力してください。"
     val handFilter: String => Boolean = (x: String) => (1 to 10).map(_.toString).contains(x)
 
-    val actionMsg = "[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"
-    val actionErrMsg = "[入力値不正]"
-
     action match {
       case Hit =>
-        val result = for {
-          //現在の手札を取得
-          hitHand <- readInt(userHandMsg,handErrMsg,handFilter)
-          afterHitHand = user :+ hitHand
-          //ヒット分を削除した山札を取得
-          deckDeleted = deck diff Seq(hitHand)
-          //ディーラのスコアの確率統計を作成、分析し、最善手を取得
-          bestAction = calculate(afterHitHand, dealer, deckDeleted)
-          _ <- putStrLn(s"最善手は${bestAction}です。")
-          userAction <- readAction(actionMsg,actionErrMsg)
-        } yield {
-          //アクションを実行
-          (afterHitHand, dealer, deckDeleted, userAction)
-        }
-        result.flatMap(x => actionFlow(x._1, x._2, x._3, x._4))
 
-      //山札をそのまま返却
-      case Stand => IO(deck)
+        val actionMsg    = "[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"
+        val actionErrMsg = "[入力値不正]"
+
+        val hitHand: IO[Int] = readHandRepetition(handMsg,handErrMsg,handFilter)
+        val afterHitHand = hitHand.map(n => user :+ n)
+        val deckDeleted = hitHand.map(n => deck :- n)
+
+        val bestAction: IO[Action] = for {
+          user <- afterHitHand
+          deck <- deckDeleted
+        } yield calculate(user,dealer,deck)
+
+        afterHitHand.flatMap(user =>
+          deckDeleted.flatMap(deck =>
+            readActionRepetition(actionMsg, actionErrMsg).flatMap(action =>
+              putStrLn(s"【分析完了】最善手は${action}です。") *>
+              actionFlow(user,dealer,deck,action))))
+
+      case Stand =>
+        IO(deck)
 
       case DoubleDown =>
-        for{
-          //ユーザがヒットした手札を取得
-          hitHand <- readInt(userHandMsg, handErrMsg, handFilter)
-        } yield {
-          (deck diff user)
-        }
+        readHandRepetition(handMsg,handErrMsg,handFilter)
+          .map(n => deck :- n)
     }
   }
 
@@ -172,44 +234,19 @@ object Analyze_BlackJack extends IOApp{
   　　          deck: Deck        使用中の山札
   戻値          Action            確率統計に基づいて算出された最善手
   */
-  def calculate(user: Hand, dealer: Hand, deck: Deck): Action = {
+  def calculateFlow(user: Hand, dealer: Hand, deck: Deck): Action = {
     println("計算を開始します。")
 
-    val probabilityStatisticsCreater = new HandProbsCreater(dealer, deck)
-    val start = System.currentTimeMillis()
-    val probabilityStatistics = probabilityStatisticsCreater.create(timeout = 1 second)
-    val end = System.currentTimeMillis()
-    println(s"${(end - start) / 1000.toDouble}s")
+    val handProbsCreater = new HandProbsCreater(dealer, deck)
+    val probs = handProbsCreater.create(10 second)
 
-    probabilityStatistics match {
+    probs match {
       case Right(x) =>
-        println(x)
         val detailsStrategy = new DetailsStrategy(x)
         detailsStrategy.bestAction(user, deck)
       case Left(e) =>
         println("タイムアウトしました")
         BasicStrategy.bestAction(user, dealer)
     }
-  }
-
-  /*
-  メソッド名   createDeck
-  機能        ゲームで使用する山札の個数を受取り、山札を生成
-  引数        deckNum: Int       山札の個数
-  戻値        Option[Deck]    使用する山札
-  */
-  private def createDeck(deckNum: Int): Deck = {
-    //トランプの組合わせを定義
-    val deck: Deck = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10)
-
-    //個数分、トランプの組合わせを追加
-    def addTramps(num: Int, deck: Deck): Deck = {
-      if (num <= 1) deck
-      else deck ++ addTramps(num - 1, deck)
-    }
-
-    //個数が0の場合空の山札を返却
-    if (deckNum < 1) Nil
-    else addTramps(deckNum * 4, deck)
   }
 }

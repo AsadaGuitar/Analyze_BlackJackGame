@@ -32,4 +32,6 @@ object MonadicIO {
       case e: NumberFormatException => IO(Left(e))
     }
   }
+
+  def getCurrentTimeMillis(): IO[Long] = IO(System.currentTimeMillis())
 }

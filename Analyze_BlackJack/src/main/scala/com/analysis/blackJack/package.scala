@@ -2,13 +2,24 @@ package com.analysis
 
 import scala.annotation.tailrec
 
+/*
+メソッド名     blackJack
+機能          blcakJackパッケージの静的クラス
+*/
 package object blackJack {
 
+  //エイリアス定義
   type Tramp = Int
   type Deck = Vector[Tramp]
   type Hand = Seq[Tramp]
   
+  /*
+  クラス名
+  */ 
   implicit class RichHand(hand: Hand) {
+    
+    def countAce: Int = hand.count(_==1)
+    
     def exchangeAce: Hand ={
       @tailrec
       def affect(hand: Hand, counter: Int)(fn: Hand => Hand): Hand =

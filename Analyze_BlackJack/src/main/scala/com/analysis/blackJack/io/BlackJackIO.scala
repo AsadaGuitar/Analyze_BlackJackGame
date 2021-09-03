@@ -14,7 +14,7 @@ object BlackJackIO {
   /*
   メソッド名       readAction
   機能            「アクションを標準入力で読取る動作」を返却
-  戻値            IO[Either[Action]]                               「メッセージを出力し、アクションを標準入力で読取る動作」
+  戻値            IO[Either[Action]]                          「メッセージを出力し、アクションを標準入力で読取る動作」
   */
   def readAction(): IO[Either[Action]] =
     //アクション読込
@@ -29,7 +29,7 @@ object BlackJackIO {
   /*
   メソッド名     readSystemCommand
   機能          「システムコマンドを標準入力で読取る動作」を返却
-  戻値          IO[Either[SystemCommand]]                          「メッセージを出力し、システムコマンドを標準入力で読取る動作」
+  戻値          IO[Either[SystemCommand]]                      「メッセージを出力し、システムコマンドを標準入力で読取る動作」
   */
   def readSystemCommand(): IO[Either[SystemCommand]] =
     //文字列読込
