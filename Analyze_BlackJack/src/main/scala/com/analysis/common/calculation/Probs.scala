@@ -5,15 +5,15 @@ import com.analysis.common.Probs
 import scala.collection.immutable
 
 /*
-オブジェクト名     ProbabilityStatistics
-機能             ProbabilityStatisticsクラスのコンパニオンオブジェクト
+オブジェクト名     Probs
+機能              Probsクラスのコンパニオンオブジェクト
 */
 object Probs {
 
   /*
   メソッド名     apply
   機能          リストを受けとリ、重複分の値を加算した確率統計を返却
-  引数          elems: I <: Seq[(K,Rational)]    Seqを上限境界とした値と確率のタプルリスト
+  引数          elems: (K,Rational)*    　　　連結した要素を引数で取得
   戻値          重複分の値を加算した確率統計
   */
   def apply[K](elems: (K,Rational)*): Probs[K] = {
@@ -22,17 +22,17 @@ object Probs {
 
   /*
   メソッド名     apply
-  機能          ProbabilityStatisticsの要素を受取り、新しいProbabilityStatisticsを返却
-  引数          elems: Map[K,Rational]    ProbabilityStatisticsの要素
-  戻値          ProbabilityStatistics[K]  新しいProbabilityStatistics
+  機能          Probsの要素を受取り、新しいProbsを返却
+  引数          elems: Map[K,Rational]    Probsの要素
+  戻値          Probs[K]  新しいProbs
   */
-  private def apply[K](elems: Map[K,Rational]): ProbabilityStatistics[K] = {
-    new ProbabilityStatistics(elems)
+  private def apply[K](elems: Map[K,Rational]): Probs[K] = {
+    new Probs(elems)
   }
 }
 
 /*
-クラス名      ProbabilityStatistics   
+クラス名      Probs   
 機能         確率統計を扱う為のクラス
 引数         elems: Map[K,Rational]   値と確率のマップ
 */
@@ -47,9 +47,9 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   /*
   メソッド名   toString
   機能        文字列に変換した際の表示を設定
-  戻値        String      文字列に変換したProbabilityStatistics
+  戻値        String      文字列に変換したProbs
   */
-  override def toString(): String = elems.mkString("ProbabilityStatistics(", ",", ")")
+  override def toString(): String = elems.mkString("Probs(", ",", ")")
 
   /*
   メソッド名   iterator
@@ -62,7 +62,7 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   メソッド名   removed
   機能        要素を削除 
   引数        key: K                  削除する要素のkey
-  戻値        ProbablityStatistics    選択した要素を削除した確率統計
+  戻値        Probs                   選択した要素を削除した確率統計
   */
   override def removed(key: K): Probs[K] =
     Probs(elems.removed(key))
@@ -72,7 +72,7 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   機能        要素の更新
   引数        key: K                    更新する要素のkey
     　　      value: V1                 更新する値
-  戻値        ProbabilityStatistics     値を更新した確率統計
+  戻値        Probs                     値を更新した確率統計
   */
   override def updated[V1 >: Rational](key: K, value: V1) = elems.updated(key,value)
 
@@ -104,9 +104,9 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   機能        受取った確率統計の値が存在した場合、値を追加。存在しない場合、新しく追加
   引数        key: K                    追加する確率のkey
   　　        value: Rational           追加する確率
-  戻値        ProbabilityStatistics     追加した確率統計
+  戻値        Probs                     追加した確率統計
   */
-  def addValue(key: K, value: Rational): ProbabilityStatistics[K] =
+  def addValue(key: K, value: Rational): Probs[K] =
     key match {
       case k if this.contains(k) => Probs(this.updated(key, value + this(k)))
       case _ => Probs(this.updated(key,value))
@@ -116,7 +116,7 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   メソッド名   addValue
   機能        受取った確率統計の値が存在した場合、値を追加。存在しない場合、新しく追加
   引数        elem: (K,Rational)        追加する確率のkeyと追加する確率のタプル
-  戻値        ProbabilityStatistics     追加した確率統計
+  戻値        Probs                     追加した確率統計
   */
   def addValue(elem: (K,Rational)): Probs[K] = addValue(elem._1,elem._2)
 
@@ -124,7 +124,7 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   メソッド名   addValue
   機能        受取った確率統計の値が存在した場合、値を追加。存在しない場合、新しく追加
   引数        elems: Seq[(K,Rational)]    追加する確率のkeyと追加する確率のタプルのリスト
-  戻値        ProbabilityStatistics       追加した確率統計
+  戻値        Probs                       追加した確率統計
   */
   def addValue(elems: Seq[(K,Rational)]): Probs[K] = elems.foldLeft(this)((acc,x) => acc.addValue(x))
 }
