@@ -9,9 +9,9 @@ import scala.annotation.tailrec
 package object blackJack {
 
   //エイリアス定義
-  type Tramp = Int
-  type Deck = Vector[Tramp]
-  type Hand = Seq[Tramp]
+  type Trump = Int
+  type Deck = Vector[Trump]
+  type Hand = Seq[Trump]
   
   /*
   クラス名

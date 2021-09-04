@@ -1,16 +1,2 @@
 [debug] Acquiring lock on file C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project\target\.sbt-compilation-infos\analyze_blackjack-compile\.sbt-idea-lock ...
-[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:73:27 
-[error] 73 |      userHandA <- readInt(userHandMsg, handErrMsg, handFilter)
-[error]    |                           ^^^^^^^^^^^
-[error]    |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
-[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:134:29 
-[error] 134 |          hitHand <- readInt(userHandMsg,handErrMsg,handFilter)
-[error]     |                             ^^^^^^^^^^^
-[error]     |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
-[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:154:29 
-[error] 154 |          hitHand <- readInt(userHandMsg, handErrMsg, handFilter)
-[error]     |                             ^^^^^^^^^^^
-[error]     |too many arguments for method readInt in object AnalysisIO: (): cats.effect.IO[Either[NumberFormatException, Int]]
-[error] three errors found
-[error] three errors found
 [debug] Releasing lock on file C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project\target\.sbt-compilation-infos\analyze_blackjack-compile\.sbt-idea-lock.

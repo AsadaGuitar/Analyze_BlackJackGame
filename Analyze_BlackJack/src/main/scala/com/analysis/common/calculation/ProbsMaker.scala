@@ -1,6 +1,7 @@
 package com.analysis.common.calculation
 
 import com.analysis.common.calculation._
+import com.analysis.common.calculation.Probs
 
 /*
 クラス名      ProbsMaker[I <: Iterable[(K, Rational)], K]
@@ -15,6 +16,6 @@ implicit class ProbsMaker[I <: Iterable[(K, Rational)], K](l: I){
   戻値          Probs[K]      Probsクラス
   */
   def toProbs: Probs[K] = {
-    l.foldLeft(Nil: Probs[K])((acc,x) => acc.addValue(x))
+    l.foldLeft(Probs())((acc,x) => acc.addValue(x))
   }
 }

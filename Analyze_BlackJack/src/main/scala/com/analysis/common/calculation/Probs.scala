@@ -1,6 +1,7 @@
 package com.analysis.common.calculation
 
-import com.analysis.common.Probs
+import com.analysis.common.calculation.Probs
+import com.analysis.common.calculation._
 
 import scala.collection.immutable
 
@@ -17,7 +18,7 @@ object Probs {
   戻値          重複分の値を加算した確率統計
   */
   def apply[K](elems: (K,Rational)*): Probs[K] = {
-    elems.foldLeft(Nil: Probs[K])((acc,x) => acc.addValue(x))
+    elems.foldLeft(Probs(Map()))((acc,x) => acc.addValue(x))
   }
 
   /*
@@ -118,7 +119,7 @@ final class Probs[K] private (elems: Map[K,Rational]) extends immutable.Map[K,Ra
   引数        elem: (K,Rational)        追加する確率のkeyと追加する確率のタプル
   戻値        Probs                     追加した確率統計
   */
-  def addValue(elem: (K,Rational)): Probs[K] = addValue(elem._1,elem._2)
+  def addValue(elem: (K,Rational)): Probs[K] = addValue(elem._1, elem._2)
 
   /*
   メソッド名   addValue

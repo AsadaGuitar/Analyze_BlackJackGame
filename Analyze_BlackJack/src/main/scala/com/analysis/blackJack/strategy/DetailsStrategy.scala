@@ -1,46 +1,46 @@
 package com.analysis.blackJack.strategy
 
-import com.analysis.blackJack.*
+import com.analysis.blackJack._
 import com.analysis.blackJack.strategy.DetailsStrategy
-import com.analysis.common.calculation.{ProbabilityStatistics, Rational}
+import com.analysis.common.calculation.{Probs, Rational}
 
 import scala.language.{implicitConversions, postfixOps}
 
 object DetailsStrategy {
 
-  def accuracyRate(implicit probs: ProbabilityStatistics[Int]) = probs.get(_ => true)
+  def accuracyRate(implicit probs: Probs[Int]) = probs.get(_ => true)
 
-  def dealerBurstRate(implicit probs: ProbabilityStatistics[Int]) = probs.get(21 < _)
+  def dealerBurstRate(implicit probs: Probs[Int]) = probs.get(21 < _)
 
-  def dealerWinRate(userScore: Int)(implicit probs: ProbabilityStatistics[Int]) =
+  def dealerWinRate(userScore: Int)(implicit probs: Probs[Int]) =
     probs.get(x => x <= 21 && userScore < x)
 
-  def dealerLoseRate(userScore: Int)(implicit probs: ProbabilityStatistics[Int]) =
+  def dealerLoseRate(userScore: Int)(implicit probs: Probs[Int]) =
     for {
       burst <- probs.get(21 < _)
       under <- probs.get(_ < userScore)
     } yield burst + under
 
-  def userBurstRate(userScore: Int, deck: Deck)(implicit probs: ProbabilityStatistics[Int]) = {
+  def userBurstRate(userScore: Int, deck: Deck)(implicit probs: Probs[Int]) = {
     val count: Int = deck.count(x => 21 < userScore + x)
     Some(new Rational(count, deck.length))
   }
-  def userWinRate(userScore: Int)(implicit probs: ProbabilityStatistics[Int]) =
+  def userWinRate(userScore: Int)(implicit probs: Probs[Int]) =
     for {
       burst <- probs.get(21 < _)
       under <- probs.get(_ < userScore)
     } yield burst + under
 
-  def userLoseRate(userScore: Int)(implicit probs: ProbabilityStatistics[Int]) =probs.get(x => x <= 21 && userScore < x)
+  def userLoseRate(userScore: Int)(implicit probs: Probs[Int]) =probs.get(x => x <= 21 && userScore < x)
 
-  def drawRate(userScore: Int)(implicit probs: ProbabilityStatistics[Int]) = probs.get(_ == userScore)
+  def drawRate(userScore: Int)(implicit probs: Probs[Int]) = probs.get(_ == userScore)
 
 }
 
-class DetailsStrategy(probabilityStatistics: ProbabilityStatistics[Int]) {
+class DetailsStrategy(probabilityStatistics: Probs[Int]) {
   import DetailsStrategy.*
   
-  private implicit val probs: ProbabilityStatistics[Int] = probabilityStatistics
+  private implicit val probs: Probs[Int] = probabilityStatistics
   
   private implicit def getRate(rational: Option[Rational]): BigDecimal = rational match {
     case Some(x) => x.get()
