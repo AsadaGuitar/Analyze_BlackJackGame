@@ -93,17 +93,16 @@ object Analyze_BlackJack extends IOApp {
   */
   def mainFlow(deck: Deck): IO[Unit] = for {
 
-    userHandA   <- readTrumpRepetition(userHandMsg, handErrMsg)
-    userHandB   <- readTrumpRepetition(userHandMsg, handErrMsg)
+    userHandA  <- readTrumpRepetition(userHandMsg, handErrMsg)
+    userHandB  <- readTrumpRepetition(userHandMsg, handErrMsg)
     userHand = userHandA ++ userHandB
-    dealerHand  <-  readTrumpRepetition(dealerHandMsg, handErrMsg)
+    dealerHand <-  readTrumpRepetition(dealerHandMsg, handErrMsg)
     deckFirstDeleted = deck.diff(userHand ++ dealerHand)
 
-    _               <- putStrLn("計算を開始します。")
+    _          <- putStrLn("計算を開始します。")
     bestAction = calculateBestAction(userHand, dealerHand, deckFirstDeleted)
-
-    _               <- putStrLn(s"最善手は${bestAction}です。")
-    userAction      <- readActionRepetition(actionMsg,actionErrMsg)
+    _          <- putStrLn(s"最善手は${bestAction}です。")
+    userAction <- readActionRepetition(actionMsg,actionErrMsg)
 
     deckAfterAction <- userAction match {
       case Hit =>
@@ -120,7 +119,7 @@ object Analyze_BlackJack extends IOApp {
             nextAction          <- readActionRepetition(actionMsg,actionErrMsg)
             deckCompletedAction <- hitFlow(afterHitHand, dealer, deckDeleted, nextAction)
           } yield deckCompletedAction
-          case _ =>IO(deck)
+          case _ => IO(deck)
         }
         hitFlow(userHand, dealerHand, deckFirstDeleted, userAction)
       case Stand      => IO(deckFirstDeleted)
