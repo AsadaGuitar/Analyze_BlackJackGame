@@ -32,6 +32,8 @@ object Analyze_BlackJack extends IOApp {
   private val dealerHandMsg = "[手札入力] : ディーラの手札を入力してください。"
   private val handErrMsg    = "[入力値不正] : 1 ~ 10 の数値を入力してください。"
 
+  private val timeout = 10 second
+
   private val actionMsg    = "[アクション入力] : \"Hit\",\"DoubleDown\",\"Stand\"のいずれかを入力してください。"
   private val actionErrMsg = "<<入力値不正>>"
 
@@ -45,7 +47,10 @@ object Analyze_BlackJack extends IOApp {
 
 
   override def run(args: List[String]) = {
-    (putStrLn("Welcome to Analyze_BlackJack") *> init()).as(ExitCode.Success)
+    (putStrLn("Welcome to Analyze_BlackJack") *>
+      initDeck()
+        .flatMap(mainFlow))
+      .as(ExitCode.Success)
   }
 
   /*
@@ -53,21 +58,32 @@ object Analyze_BlackJack extends IOApp {
   機能         システム(山札)の初期化
               mainFlowの実行
   */
-  def init(): IO[Unit] = {
+  def initDeck(): IO[Deck] = {
     putStrLn(deckMsg) *> readInt().flatMap(x => x match {
       case Right(n) => 
         if ((1 to deckMaxNum).contains(n)){
-
           val deck = createDeck(n)
-
-          if (deck.nonEmpty) mainFlow(deck)
-          else putStrLn(deckErrMsg) *> init()
+          if (deck.nonEmpty) IO(deck)
+          else putStrLn(deckErrMsg) *> initDeck()
         }
         else {
-          putStrLn(deckErrMsg) *> init()
+          putStrLn(deckErrMsg) *> initDeck()
         }
-      case Left(_) => putStrLn(deckErrMsg) *> init()
+      case Left(_) => putStrLn(deckErrMsg) *> initDeck()
     })
+  }
+
+  def calculateBestAction(userHand: Hand, dealerHand: Hand, deck: Deck) ={
+    val handProbsCreater = new HandProbsCalculatorImpl(dealerHand, deck)
+    val probs = handProbsCreater.calculate(timeout)
+
+    probs match {
+      case Right(x) =>
+        val detailsStrategy = new DetailsStrategy(x)
+        detailsStrategy.bestAction(userHand, deck)
+      case Left(e)  =>
+        BasicStrategy.bestAction(userHand, dealerHand)
+    }
   }
 
   /*
@@ -83,10 +99,34 @@ object Analyze_BlackJack extends IOApp {
     dealerHand  <-  readTrumpRepetition(dealerHandMsg, handErrMsg)
     deckFirstDeleted = deck.diff(userHand ++ dealerHand)
 
-    bestAction = calculateFlow(userHand, dealerHand, deckFirstDeleted)
+    _               <- putStrLn("計算を開始します。")
+    bestAction = calculateBestAction(userHand, dealerHand, deckFirstDeleted)
+
     _               <- putStrLn(s"最善手は${bestAction}です。")
     userAction      <- readActionRepetition(actionMsg,actionErrMsg)
-    deckAfterAction <- actionFlow(userHand,dealerHand,deckFirstDeleted,userAction)
+
+    deckAfterAction <- userAction match {
+      case Hit =>
+        def hitFlow(user: Hand, dealer: Hand, deck: Deck, action: Action): IO[Deck] = action match {
+          case Hit => for {
+            hitHand <- readTrumpRepetition(userHandMsg, handErrMsg)
+            afterHitHand = user ++ hitHand
+            deckDeleted  = deck.diff(afterHitHand)
+
+            _ <- putStrLn("計算を開始します。")
+            bestAction = calculateBestAction(afterHitHand, dealer, deckDeleted)
+            _ <- putStrLn(s"最善手は${bestAction}です。")
+
+            nextAction          <- readActionRepetition(actionMsg,actionErrMsg)
+            deckCompletedAction <- hitFlow(afterHitHand, dealer, deckDeleted, nextAction)
+          } yield deckCompletedAction
+          case _ =>IO(deck)
+        }
+        hitFlow(userHand, dealerHand, deckFirstDeleted, userAction)
+      case Stand      => IO(deckFirstDeleted)
+      case DoubleDown => val hitHand = readTrumpRepetition(userHandMsg, handErrMsg)
+        hitHand.map(n => deckFirstDeleted diff n)
+    }
 
     dealerHitHand <- readDealerHitTrumps(dealerHitHandMsg, dealerHitHandErrMsg, dealerHitHandPeriod)
     dealerHandCompleted = dealerHand ++ dealerHitHand
@@ -97,67 +137,8 @@ object Analyze_BlackJack extends IOApp {
 
     _ <- userSystemCommand match {
       case Continue => mainFlow(deckCompleted)
-      case Init     => init()
+      case Init     => initDeck().flatMap(mainFlow)
       case Finish   => putStrLn("終了します。")
     }
   } yield ()
-
-
-  /*
-  メソッド名     calculate
-  機能          ディーラのスコアの確率統計を作成、分析し、最善手を返却
-  引数          user: Hand        ユーザの手札
-  　　          dealer: Hand      ディーラの手札
-  　　          deck: Deck        使用中の山札
-  戻値          Action            確率統計に基づいて算出された最善手
-  */
-  def calculateFlow(user: Hand, dealer: Hand, deck: Deck): Action = {
-    println("計算を開始します。")
-
-    val handProbsCreater = new HandProbsCalculatorImpl(dealer, deck)
-    val probs = handProbsCreater.calculate(10 second)
-
-    probs match {
-      case Right(x) =>
-        val detailsStrategy = new DetailsStrategy(x)
-        detailsStrategy.bestAction(user, deck)
-      case Left(e) =>
-        println("タイムアウトしました")
-        BasicStrategy.bestAction(user, dealer)
-    }
-  }
-
-  /*
-  メソッド名     actionFlow
-  機能          入力されたアクションの処理を実行
-  引数          user: Hand        ユーザの手札
-  　　          dealer: Hand      ディーラの手札
-  　　          deck: Deck        使用中の山札
-  　　          action: Action    入力されたアクション
-  戻値          Deck              アクション後の山札
-  */
-  def actionFlow(user: Hand, dealer: Hand, deck: Deck, action: Action): IO[Deck] = {
-
-    action match {
-      case Hit => for {
-
-        hitHand <- readTrumpRepetition(userHandMsg, handErrMsg)
-        afterHitHand = user ++ hitHand
-        deckDeleted  = deck diff afterHitHand
-
-        bestAction   = calculateFlow(afterHitHand, dealer, deckDeleted)
-        _ <- putStrLn(s"最善手は${bestAction}です。")
-
-        userActoin <- readActionRepetition(actionMsg,actionErrMsg)
-        deckCompletedActionFlow <- actionFlow(afterHitHand, dealer, deckDeleted, userActoin)
-
-      } yield deckCompletedActionFlow
-
-      case Stand => IO(deck)
-
-      case DoubleDown =>
-        val hitHand = readTrumpRepetition(userHandMsg, handErrMsg)
-        hitHand.map(n => deck diff n)
-    }
-  }
 }

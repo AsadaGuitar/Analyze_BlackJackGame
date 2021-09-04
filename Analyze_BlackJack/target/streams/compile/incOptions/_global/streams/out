@@ -1,2 +1,17 @@
 [debug] Created transactional ClassFileManager with tempDir = C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes.bak
+[debug] About to delete class files:
+[debug] 	Analyze_BlackJack.class
+[debug] 	Analyze_BlackJack$.class
+[debug] 	Analyze_BlackJack.tasty
+[debug] 	Analyze_BlackJack$.tasty
+[debug] We backup class files:
+[debug] 	Analyze_BlackJack.class
+[debug] 	Analyze_BlackJack$.class
+[debug] 	Analyze_BlackJack.tasty
+[debug] 	Analyze_BlackJack$.tasty
+[debug] Registering generated classes:
+[debug] 	Analyze_BlackJack.class
+[debug] 	Analyze_BlackJack$.class
+[debug] 	Analyze_BlackJack.tasty
+[debug] 	Analyze_BlackJack$.tasty
 [debug] Removing the temporary directory used for backing up class files: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes.bak

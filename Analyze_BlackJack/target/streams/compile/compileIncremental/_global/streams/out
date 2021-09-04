@@ -2,5 +2,37 @@
 [debug] IncrementalCompile.incrementalCompile
 [debug] previous = Stamps for: 67 products, 23 sources, 5 libraries
 [debug] current source = Set(${BASE}/src/main/scala/com/analysis/common/io/MonadicIO.scala, ${BASE}/src/main/scala/com/analysis/common/util/ListUtil.scala, ${BASE}/src/main/scala/oldSrcData/calculation/strategy/BasicStrategy.scala, ${BASE}/src/main/scala/com/analysis/common/calculation/Probs.scala, ${BASE}/src/main/scala/com/analysis/blackJack/app/Analyze_BlackJack.scala, ${BASE}/src/main/scala/oldSrcData/Analyze_BlackJack_IO.scala, ${BASE}/src/main/scala/com/analysis/common/calculation/Rational.scala, ${BASE}/src/main/scala/oldSrcData/calculation/probabilityStatistics/HandStatisticsCreater.scala, ${BASE}/src/main/scala/oldSrcData/package.scala, ${BASE}/src/main/scala/oldSrcData/calculation/probabilityStatistics/ProbabilityStatistics.scala, ${BASE}/src/main/scala/oldSrcData/calculation/probabilityStatistics/HandProbabilityCalculator.scala, ${BASE}/src/main/scala/com/analysis/blackJack/io/BlackJackIO.scala, ${BASE}/src/main/scala/com/analysis/blackJack/calculation/HandProbsCalculator.scala, ${BASE}/src/main/scala/oldSrcData/calculation/probabilityStatistics/ProbabilityStatisticsCreater.scala, ${BASE}/src/main/scala/oldSrcData/calculation/strategy/DetailsStrategy.scala, ${BASE}/src/main/scala/com/analysis/common/util/RichDiff.scala, ${BASE}/src/main/scala/com/analysis/blackJack/util/DeckUtility.scala, ${BASE}/src/main/scala/com/analysis/blackJack/package.scala, ${BASE}/src/main/scala/oldSrcData/Analyze_BlackJack.scala, ${BASE}/src/main/scala/oldSrcData/calculation/Rational.scala, ${BASE}/src/main/scala/com/analysis/blackJack/strategy/DetailsStrategy.scala, ${BASE}/src/main/scala/com/analysis/blackJack/strategy/BasicStrategy.scala, ${BASE}/src/main/scala/com/analysis/common/calculation/ProbsMaker.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
-[debug] No changes
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/com/analysis/blackJack/app/Analyze_BlackJack.scala), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] 
+[debug] Initial source changes:
+[debug] 	removed: Set()
+[debug] 	added: Set()
+[debug] 	modified: Set(${BASE}/src/main/scala/com/analysis/blackJack/app/Analyze_BlackJack.scala)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set(com.analysis.blackJack.app.Analyze_BlackJack)
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(com.analysis.blackJack.app.Analyze_BlackJack)
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/com/analysis/blackJack/app/Analyze_BlackJack.scala)
+[debug] Initial set of included nodes: com.analysis.blackJack.app.Analyze_BlackJack
+[debug] compilation cycle 1
+[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[debug] Returning already retrieved and compiled bridge: C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-sbt-bridge\3.0.0\scala3-sbt-bridge-3.0.0.jar.
+[debug] [zinc] Running cached compiler 394619f2 for Scala Compiler version 3.0.0
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.0.0\scala3-library_3-3.0.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.5\scala-library-2.13.5.jar
+[debug] 	-classpath
+[debug] 	C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.0.1\scala3-library_3-3.0.1.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-parallel-collections_3\1.0.3\scala-parallel-collections_3-1.0.3.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix_3\3.4.0\monix_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-core_3\2.6.1\cats-core_3-2.6.1.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-effect_3\2.5.2\cats-effect_3-2.5.2.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-execution_3\3.4.0\monix-execution_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-catnap_3\3.4.0\monix-catnap_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-eval_3\3.4.0\monix-eval_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-tail_3\3.4.0\monix-tail_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-reactive_3\3.4.0\monix-reactive_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-java_3\3.4.0\monix-java_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\typelevel\cats-kernel_3\2.6.1\cats-kernel_3-2.6.1.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\typelevel\simulacrum-scalafix-annotations_3\0.5.4\simulacrum-scalafix-annotations_3-0.5.4.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\monix-internal-jctools_3\3.4.0\monix-internal-jctools_3-3.4.0.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\io\monix\implicitbox_3\0.3.4\implicitbox_3-0.3.4.jar;C:\Users\soroc\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\reactivestreams\reactive-streams\1.0.3\reactive-streams-1.0.3.jar
+[debug] Scala compilation took 0.3744963 s
+[info] done compiling
+[debug] New invalidations:
+[debug] Initial set of included nodes: 
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] Final step, transitive dependencies:
+[debug] 	Set()
+[debug] No classes were invalidated.
