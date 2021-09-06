@@ -1,0 +1,15 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:60:43 
+[error] 60 |    val probs = handProbsCreater.calculate(timeout)
+[error]    |                                           ^^^^^^^
+[error]    |                                           Not found: timeout
+[error] one error found
+[error] one error found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 0 s, completed 2021/09/06 0:20:53
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

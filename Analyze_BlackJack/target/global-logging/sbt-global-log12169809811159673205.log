@@ -1,0 +1,131 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(early(addPluginSbtFile="""C:\Users\soroc\AppData\Local\Temp\idea.sbt"""), None, None)
+[debug] > Exec(addPluginSbtFile="""C:\Users\soroc\AppData\Local\Temp\idea.sbt""", None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.5.5 (Oracle Corporation Java 15.0.2)
+[debug]       Load.loadUnit: plugins took 192.8222ms
+[debug]       Load.loadUnit: defsScala took 0.4045ms
+[debug] [Loading] Scanning directory C:\Users\soroc\.sbt\1.0\plugins
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\soroc\.sbt\1.0\plugins, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 12.6092 ms
+[debug]           Load.resolveProject(global-plugins) took 177.1009ms
+[debug]         Load.loadTransitive: finalizeProject(Project(id global-plugins, base: C:\Users\soroc\.sbt\1.0\plugins, plugins: List(<none>))) took 298.2118ms
+[debug] [Loading] Done in C:\Users\soroc\.sbt\1.0\plugins, returning: (global-plugins)
+[debug]       Load.loadUnit: loadedProjectsRaw took 395.1821ms
+[debug]       Load.loadUnit: cleanEvalClasses took 0.2075ms
+[debug]     Load.loadUnit(file:/C:/Users/soroc/.sbt/1.0/plugins/, ...) took 600.2623ms
+[debug]   Load.apply: load took 1092.1293ms
+[debug]   Load.apply: resolveProjects took 4.3892ms
+[debug]   Load.apply: finalTransforms took 171.9802ms
+[debug]   Load.apply: config.delegates took 4.9368ms
+[debug]   Load.apply: Def.make(settings)... took 782.569ms
+[debug]   Load.apply: structureIndex took 125.2986ms
+[debug]   Load.apply: mkStreams took 1.738ms
+[info] loading global plugins from C:\Users\soroc\.sbt\1.0\plugins
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Load.defaultLoad until apply took 9233.0164ms
+[debug]           Load.loadUnit: plugins took 21.9708ms
+[debug]           Load.loadUnit: defsScala took 0.0035ms
+[debug] [Loading] Scanning directory C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project
+[debug]             Load.loadUnit: mkEval took 4.7072ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 1.3708 ms
+[info] loading settings for project analyze_blackjack-build from idea.sbt ...
+[debug]               Load.resolveProject(analyze_blackjack-build) took 2.0781ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id analyze_blackjack-build, base: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project, plugins: List(<none>))) took 3.8593ms
+[debug] [Loading] Done in C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project, returning: (analyze_blackjack-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 420.8442ms
+[debug]           Load.loadUnit: cleanEvalClasses took 4.5217ms
+[debug]         Load.loadUnit(file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/project/, ...) took 448.3065ms
+[debug]       Load.apply: load took 450.0385ms
+[debug]       Load.apply: resolveProjects took 0.0953ms
+[debug]       Load.apply: finalTransforms took 6.8718ms
+[debug]       Load.apply: config.delegates took 0.2918ms
+[debug]       Load.apply: Def.make(settings)... took 69.0002ms
+[debug]       Load.apply: structureIndex took 23.9766ms
+[debug]       Load.apply: mkStreams took 0.0021ms
+[info] loading project definition from C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]     Load.loadUnit: plugins took 1672.9127ms
+[debug]     Load.loadUnit: defsScala took 0.0029ms
+[debug] [Loading] Scanning directory C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack
+[debug]       Load.loadUnit: mkEval took 0.3689ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.StructurePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.IdeaShellPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.StructurePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.jetbrains.sbt.IdeaShellPlugin)))
+[debug] Clause(And(Set(Atom(sbt.plugins.CorePlugin), Atom(sbt.plugins.JvmPlugin))),Set(Atom(org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.SemanticdbPlugin,org.jetbrains.sbt.indices.SbtIntellijIndicesPlugin,sbt.plugins.JUnitXmlReportPlugin,org.jetbrains.sbt.IdeaShellPlugin,org.jetbrains.sbt.StructurePlugin,sbt.plugins.MiniDependencyTreePlugin)
+[debug] Plugins.deducer#function took 1.775 ms
+[info] loading settings for project analyze_blackjack from build.sbt ...
+[debug]         Load.resolveProject(analyze_blackjack) took 18.2444ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id analyze_blackjack, base: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack, plugins: List(<none>))) took 21.0107ms
+[debug] [Loading] Done in C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack, returning: (analyze_blackjack)
+[debug]     Load.loadUnit: loadedProjectsRaw took 336.0582ms
+[debug]     Load.loadUnit: cleanEvalClasses took 110.5425ms
+[debug]   Load.loadUnit(file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/, ...) took 2120.528ms
+[debug] Load.apply: load took 2122.1521ms
+[debug] Load.apply: resolveProjects took 0.1022ms
+[debug] Load.apply: finalTransforms took 20.1685ms
+[debug] Load.apply: config.delegates took 0.3723ms
+[debug] Load.apply: Def.make(settings)... took 81.5417ms
+[debug] Load.apply: structureIndex took 39.9835ms
+[debug] Load.apply: mkStreams took 0.0026ms
+[info] set current project to Analyze_BlackJack (in build file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(notifyUsersAboutShell, None, None)
+[debug] > Exec(iflast shell, None, None)
+[debug] > Exec(; set ideaPort in Global := 51390 ; idea-shell, None, None)
+[debug] > Exec(set ideaPort in Global := 51390, None, None)

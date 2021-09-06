@@ -1,6 +1,9 @@
 package com.analysis.blackJack.strategy
 
 import com.analysis.blackJack._
+import com.analysis.blackJack.util.HandUtil._
+import com.analysis.blackJack.util.ActionUtil._
+import com.analysis.blackJack.util.SystemCommandUtil._
 
 object BasicStrategy { 
 

@@ -1,0 +1,17 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 1 Scala source to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\io\MonadicIO.scala:29:65 
+[error] 29 |      case ln if (1 to 10).map(_.toString).contains(ln) => IO(ln.toInt)
+[error]    |                                                              ^^^^^^^^
+[error]    |                                        Found:    Int
+[error]    |                                        Required: Either[Exception, Int]
+[error] one error found
+[error] one error found
+[debug] Forcing garbage collection...
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 2 s, completed 2021/09/05 3:45:26
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

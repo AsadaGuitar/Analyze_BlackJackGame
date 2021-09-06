@@ -25,13 +25,16 @@ object MonadicIO {
   戻値          IO[Unit]           「メッセージを出力し、数値を読取るまで入力を繰り返す動作」
   */
   def readInt(): IO[Either[NumberFormatException, Int]] = {
-    try {
-      readLn().map(ln => Right(ln.toInt))
-    }
-    catch {
-      case e: NumberFormatException => IO(Left(e))
-    }
+    readLn().map(line => line match {
+      case ln if (1 to 10).map(_.toString).contains(ln) => Right(ln.toInt)
+      case _ => Left(new NumberFormatException)
+    })
   }
 
+  /*
+  メソッド名     getCurrentTimeMillis
+  機能          「現在時刻をミリ秒で取得する動作」を返却
+  戻値          IO[Long]            「現在時刻をミリ秒で取得する動作」
+  */
   def getCurrentTimeMillis(): IO[Long] = IO(System.currentTimeMillis())
 }
