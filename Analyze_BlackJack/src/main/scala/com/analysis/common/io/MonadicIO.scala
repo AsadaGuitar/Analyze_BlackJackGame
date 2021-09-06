@@ -32,9 +32,9 @@ object MonadicIO {
   }
 
   /*
-  メソッド名     getCurrentTimeMillis
-  機能          「現在時刻をミリ秒で取得する動作」を返却
-  戻値          IO[Long]            「現在時刻をミリ秒で取得する動作」
+  メソッド名     getCurrentTimrMillis
+  機能          「現在時刻をミリ秒で読込動作」を返却
+  戻値          IO[Long]              「現在時刻をミリ秒で読込動作」
   */
   def getCurrentTimeMillis(): IO[Long] = IO(System.currentTimeMillis())
 }

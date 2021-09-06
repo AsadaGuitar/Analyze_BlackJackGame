@@ -158,5 +158,5 @@ object Analyze_BlackJack extends IOApp {
         case Finish   => putStrLn("終了します。")
       }
     } yield ()
-  }
+  } 
 }
