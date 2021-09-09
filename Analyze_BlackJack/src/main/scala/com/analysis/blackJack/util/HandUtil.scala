@@ -1,11 +1,13 @@
 package com.analysis.blackJack.util
 
-import blackJack.Hand
-import com.analysis.common.util.RichIterable._
+import com.analysis.common.util.RichIterable.*
 
+import com.analysis.blackJack._
 import scala.annotation.tailrec
 
 object HandUtil {
+  
+  type Hand = Seq[Int]
   
   final class HandFormatException(errMsg: String = "不正な文字列です") extends Exception(errMsg)
 
@@ -23,9 +25,10 @@ object HandUtil {
 
     def exchangeAce: Hand ={
       @tailrec
-      def affect(hand: Hand, counter: Int)(fn: Hand => Hand): Hand =
+      def affect(hand: Hand, counter: Int)(fn: Hand => Hand): Hand = {
         if (counter == 0) hand
         else affect(fn(hand), counter -1)(fn)
+      }
 
       @tailrec
       def exchange(hand: Hand, counter: Int): Hand ={

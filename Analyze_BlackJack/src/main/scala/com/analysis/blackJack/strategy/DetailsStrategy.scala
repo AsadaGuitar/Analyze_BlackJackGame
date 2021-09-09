@@ -2,6 +2,7 @@ package com.analysis.blackJack.strategy
 
 import com.analysis.blackJack._
 import com.analysis.blackJack.strategy.DetailsStrategy
+import com.analysis.blackJack.util.DeckUtili._
 import com.analysis.common.calculation.{Probs, Rational}
 import com.analysis.blackJack.util.HandUtil._
 import com.analysis.blackJack.util.ActionUtil._
@@ -45,14 +46,14 @@ class DetailsStrategy(probabilityStatistics: Probs[Int]) {
   
   private implicit val probs: Probs[Int] = probabilityStatistics
   
-  private implicit def getRate(rational: Option[Rational]): BigDecimal = rational match {
+  private def getRate(rational: Option[Rational]): BigDecimal = rational match {
     case Some(x) => x.get()
     case _ => 0
   }
 
   def bestAction(user: Hand, deck: Deck): Action =
-    if (dealerBurstRate < 0.1) Hit
-    else if (dealerLoseRate(user.sum) > 0.7) Stand
-    else if (dealerWinRate(user.sum) > 0.8) Hit
-    else Stand
+    if      (getRate(dealerBurstRate) < 0.1)          Hit
+    else if (getRate(dealerLoseRate(user.sum)) > 0.7) Stand
+    else if (getRate(dealerWinRate(user.sum)) > 0.8)  Hit
+    else                                              Stand
 }

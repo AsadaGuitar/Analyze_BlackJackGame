@@ -1,0 +1,19 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 7 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[warn] -- Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\util\Applicative.scala:1:28 
+[warn] 1 |package com.analysis.common.util
+[warn]   |^
+[warn]   |No class, trait or object is defined in the compilation unit.
+[warn]   |The incremental compiler cannot record the dependency information in such case.
+[warn]   |Some errors like unused import referring to a non-existent class might not be reported.
+[warn] 2 |import cats.Monoid
+[warn] 3 |import com.analysis.blackJack._
+[warn] one warning found
+[warn] one warning found
+[info] done compiling
+[success] Total time: 19 s, completed 2021/09/08 21:15:23
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
