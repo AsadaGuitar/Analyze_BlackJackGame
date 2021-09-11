@@ -1,9 +1,9 @@
 package com.analysis.blackJack.calculation
 
-
 import com.analysis.blackJack.util.HandUtil._
-import com.analysis.common.calculation.*
-import com.analysis.common.calculation.Probs
+import com.analysis.common.calculation.Probs._
+import com.analysis.common.calculation._
+import com.analysis.common.calculation.Rational
 import com.analysis.common.util.RichIterable._
 import com.analysis.blackJack.util.DeckUtili._
 import javax.swing.DefaultCellEditor
@@ -12,16 +12,8 @@ import scala.concurrent.{Await, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.{Duration, FiniteDuration}
 
-import cats.Monad
-import cats.FlatMap
-import cats.Functor
 
-trait HandProbsCalculator {
-  
-  def calculate(implicit timeout: Duration): Either[java.util.concurrent.TimeoutException, Probs[Int]]
-}
-
-class HandProbsCalculatorImpl(dealerHand: Hand, deck: Deck) extends HandProbsCalculator {
+object HandProbsCalculator {
 
   private def calculateProb(hand: Hand,deck: Deck): Rational = {
     val r: List[Int] = (((deck.length - hand.length) + 2) to deck.length).toList
@@ -31,7 +23,7 @@ class HandProbsCalculatorImpl(dealerHand: Hand, deck: Deck) extends HandProbsCal
   private def loopHit(hand: Hand, deck: Deck): Seq[Hand] = hand match{
       case h if 17 <= h.sum             => Seq(h)
       case h if 17 <= h.exchangeAce.sum => Seq(h.exchangeAce)
-      case _ => deck.flatMap(t => loopHit(hand :+ t, deck :- t))
+      case _ => deck.flatMap(t => loopHit(hand :+ t, deck.diff(Seq(t))))
   }
 
   private val futureLoopHit: (Hand,Deck) => Future[Seq[Hand]] =
@@ -40,9 +32,10 @@ class HandProbsCalculatorImpl(dealerHand: Hand, deck: Deck) extends HandProbsCal
       else loopHit(hand, deck)
     }
 
-  override def calculate(implicit timeout: Duration): Either[concurrent.TimeoutException, Probs[Int]]= {
+  def calculate(dealerHand: Hand, deck: Deck) 
+               (implicit timeout: Duration): Either[concurrent.TimeoutException, Probs[Int]]= {
 
-    val paralellCalculate = Future.sequence(deck.map(x => futureLoopHit(dealerHand :+ x, deck :- x)))
+    val paralellCalculate = Future.sequence(deck.map(x => futureLoopHit(dealerHand :+ x, deck.diff(Seq(x)) )))
 
     val awaitResult: Either[concurrent.TimeoutException, Vector[Hand]] = try {
       //非同期の待機時間が設定されたタイムアウトの時間を超過した場合、例外が発生

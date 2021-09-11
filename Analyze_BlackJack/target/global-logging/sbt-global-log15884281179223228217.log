@@ -1,0 +1,19 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 12 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[warn] -- [E030] Match case Unreachable Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\io\CommandReader.scala:25:13 
+[warn] 25 |        case readingPeriod => Some(readList)
+[warn]    |             ^^^^^^^^^^^^^
+[warn]    |             Unreachable case
+[warn] -- [E030] Match case Unreachable Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\common\io\CommandReader.scala:26:13 
+[warn] 26 |        case line => exchange(line) match {
+[warn]    |             ^^^^
+[warn]    |             Unreachable case
+[warn] two warnings found
+[warn] two warnings found
+[info] done compiling
+[success] Total time: 3 s, completed 2021/09/11 19:58:12
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

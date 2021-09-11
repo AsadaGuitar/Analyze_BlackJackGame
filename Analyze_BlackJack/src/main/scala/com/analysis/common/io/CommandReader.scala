@@ -19,13 +19,12 @@ object CommandReader {
                                         (exchange: String => Either[E, A]): Option[List[A]] = {
     def readRepetition(readList: List[A]): Option[List[A]] = {
       val line = scala.io.StdIn.readLine()
-      if (line.equals(systemPeriod)) {
-        None
-      }
-      else {
-        if (line == readingPeriod) Some(readList)
-        else exchange(line) match {
-          case Right(ln) => readRepetition(readList :+ ln)
+      
+      line match {
+        case ln if ln == systemPeriod  => None
+        case ln if ln == readingPeriod => Some(readList)
+        case ln => exchange(ln) match {
+          case Right(a) => readRepetition(readList :+ a)
           case Left(e) =>
             println(e.getMessage)
             readRepetition(readList)

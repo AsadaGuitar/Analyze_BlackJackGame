@@ -8,9 +8,9 @@ import scala.annotation.tailrec
 object HandUtil {
   
   type Hand = Seq[Int]
-  
-  final class HandFormatException(errMsg: String = "不正な文字列です") extends Exception(errMsg)
 
+  final class HandFormatException(errMsg: String = "不正な文字列です") extends Exception(errMsg)
+  
   def toHand(str: String): Either[HandFormatException, Hand] = str match {
     case ln if ((1 to 10).map(_.toString).contains(ln)) => Right(Seq(ln.toInt))
     case _ => Left(new HandFormatException())
@@ -33,7 +33,7 @@ object HandUtil {
       @tailrec
       def exchange(hand: Hand, counter: Int): Hand ={
         if (counter == 0) return hand
-        val deletedAce = affect(hand,counter)(h => h :- 1)
+        val deletedAce = affect(hand,counter)(h => h.diff(Seq(1)))
         val addedEleven = affect(deletedAce,counter)(h => h :+ 11)
 
         if ((17 to 21).contains(addedEleven.sum)) addedEleven

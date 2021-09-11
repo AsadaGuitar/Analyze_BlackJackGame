@@ -1,0 +1,19 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 5 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E032] Syntax Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\flow\CalculationFlowImpl.scala:25:17 
+[error] 25 |      case Right(implicit x) =>
+[error]    |                 ^^^^^^^^
+[error]    |                 pattern expected
+[error] -- Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\flow\CalculationFlowImpl.scala:26:50 
+[error] 26 |        DetailsStrategy.bestAction(userHand, deck)
+[error]    |                                                  ^
+[error]    |no implicit argument of type com.analysis.common.calculation.Probs[Int] was found for parameter probs of method bestAction in object DetailsStrategy
+[error] two errors found
+[error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 2 s, completed 2021/09/11 21:53:12
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

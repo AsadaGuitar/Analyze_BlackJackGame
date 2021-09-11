@@ -1,0 +1,26 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 4 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\CalculationFlow.scala:17:26 
+[error] 17 |    implicit val timeout: Duration = 10 second
+[error]    |                          ^^^^^^^^
+[error]    |                          Not found: type Duration
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\CalculationFlow.scala:18:0 
+[error] 18 |    implicit val timeout: Duration = 10 second
+[error]    |                                     ^^^^^^^^^
+[error]    |value second is not a member of Int, but could be made available as an extension method.
+[error]    |
+[error]    |One of the following imports might fix the problem:
+[error]    |
+[error]    |  import concurrent.duration.DurationInt
+[error]    |  import concurrent.duration.DurationLong
+[error]    |  import concurrent.duration.DurationDouble
+[error]    |
+[error] two errors found
+[error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 2 s, completed 2021/09/12 1:07:43
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

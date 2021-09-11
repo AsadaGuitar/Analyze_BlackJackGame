@@ -13,19 +13,16 @@ object SystemCommandUtil {
     def toSystemCommand: Either[SystemCommandFormatException, SystemCommand]
   }
 
-  object SystemCommandFormat {
-    implicit class StringSystemCommandFormat(str: String) extends SystemCommandFormat {
-      def toSystemCommand: Either[SystemCommandFormatException, SystemCommand] = str.toUpperCase match {
-        case "CONTINUE" => Right(Continue)
-        case "INIT"     => Right(Init)
-        case "FINISH"   => Right(Finish)
-        case _          => Left(new SystemCommandFormatException())
-      }
+  implicit class StringSystemCommandFormat(str: String) extends SystemCommandFormat {
+    def toSystemCommand: Either[SystemCommandFormatException, SystemCommand] = str.toUpperCase match {
+      case "CONTINUE" => Right(Continue)
+      case "INIT"     => Right(Init)
+      case "FINISH"   => Right(Finish)
+      case _          => Left(new SystemCommandFormatException())
     }
   }
   
   def toSystemCommand(str: String): Either[SystemCommandFormatException, SystemCommand] = {
-    import SystemCommandFormat._
     str.toSystemCommand
   }
 }

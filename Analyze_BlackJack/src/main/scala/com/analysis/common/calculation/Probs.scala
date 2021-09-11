@@ -7,7 +7,7 @@ import scala.collection.immutable
 
 /*
 オブジェクト名     Probs
-機能              Probsクラスのコンパニオンオブジェクト
+機能             Probsクラスのコンパニオンオブジェクト
 */
 object Probs {
 
@@ -29,6 +29,23 @@ object Probs {
   */
   private def apply[K](elems: Map[K,Rational]): Probs[K] = {
     new Probs(elems)
+  }
+}
+
+/*
+  クラス名      ProbsMaker[I <: Iterable[(K, Rational)], K]
+  機能　　      Iterableを上限境界としたオブジェクトをProbsに変換
+  引数          l: I
+  */
+implicit class ProbsMaker[I <: Iterable[(K, Rational)], K](l: I){
+
+  /*
+  メソッド名     toProbs
+  機能          Iterableを上限境界としたオブジェクトをProbsに変換
+  戻値          Probs[K]      Probsクラス
+  */
+  def toProbs: Probs[K] = {
+    l.foldLeft(Probs())((acc,x) => acc.addValue(x))
   }
 }
 

@@ -1,0 +1,24 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 12 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\calculation\HandProbsCalculator.scala:21:91 
+[error] 21 |  def calculate(implicit timeout: Duration): Either[java.util.concurrent.TimeoutException, Probs[Int]]
+[error]    |                                                                                           ^^^^^
+[error]    |                                                   Not found: type Probs
+[error] -- [E006] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\calculation\HandProbsCalculator.scala:43:90 
+[error] 43 |  override def calculate(implicit timeout: Duration): Either[concurrent.TimeoutException, Probs[Int]]= {
+[error]    |                                                                                          ^^^^^
+[error]    |                                                   Not found: type Probs
+[error] -- [E007] Type Mismatch Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\Analyze_BlackJack.scala:66:50 
+[error] 66 |        val detailsStrategy = new DetailsStrategy(x)
+[error]    |                                                  ^
+[error]    |                    Found:    (x : Any)
+[error]    |                    Required: com.analysis.common.calculation.Probs[Int]
+[error] three errors found
+[error] three errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 2 s, completed 2021/09/11 19:56:51
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
