@@ -5,8 +5,20 @@ import com.analysis.blackJack.util.HandUtil._
 import com.analysis.blackJack.util.ActionUtil._
 import com.analysis.blackJack.util.SystemCommandUtil._
 
+
+/*
+オブジェクト      BasicStrategy
+機能            ベーシックストラテジーに基づき最善手を計算
+*/
 object BasicStrategy { 
 
+  /*
+  メソッド名       hardHand
+  機能            ユーザスコア、ディーラスコアを受取り、最善手を計算
+  引数            playerScore:  Int       ユーザスコア
+  　　            dealerScore:  Int       ディーラスコア
+  戻値            Action                  最善手として計算されたアクション
+  */
   private def hardHand(playerScore: Int, dealerScore: Int): Action = playerScore match {
     case score if score <= 8 => Hit
     case score if 17 <= score => Stand
@@ -37,6 +49,13 @@ object BasicStrategy {
       }
   }
 
+  /*
+  メソッド名     softHand
+  機能          ユーザスコアとディーラスコアから最善手を計算
+  引数          scoreNotAce:  Int         ユーザスコア
+  　　          dealerScore:  Int         ディーラスコア
+  戻値          Action                    最善手として計算されたアクション
+  */
   private def softHand(scoreNotAce: Int, dealerScore: Int): Action = scoreNotAce match {
     case score if score == 4 || score == 5 =>
       dealerScore match {
@@ -68,11 +87,20 @@ object BasicStrategy {
       }
   }
 
+  /*
+  メソッド名     bestAction
+  機能          ユーザ手札とディーラ手札を受取り、最善手を返却
+  引数          user  : Hand      ユーザ手札
+  　　          dealer: Hand      ディーラ手札
+  戻値          Action            最善手として計算されたアクション
+  */
   def bestAction(user: Hand, dealer: Hand) = user match {
+    //ユーザ手札に1が含まれていた場合softHandメソッドを実行
     case hand if hand.contains(1) =>
       val userScore = (user diff Seq(1)).sum
       val dealerScore = dealer.sum
       softHand(userScore, dealerScore)
+    //ユーザ手札に1が含まれていない場合hardHandメソッドを実行
     case _ =>
       val userScore = user.sum
       val dealerScore = dealer.sum
