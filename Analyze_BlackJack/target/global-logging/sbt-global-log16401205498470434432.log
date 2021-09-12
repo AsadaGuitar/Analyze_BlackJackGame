@@ -1,0 +1,57 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 5 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E008] Not Found Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:4:27 
+[error] 4 |import com.analysis.common.util.RichIterable.*
+[error]   |       ^^^^^^^^^^^^^^^^^^^^^^^^
+[error]   |       value util is not a member of com.analysis.common
+[error] -- [E135] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:98:16 
+[error] 98 |      case Some(Continue) => mainFlow(deckCompleted)
+[error]    |                ^^^^^^^^
+[error]    |Stable identifier required, but <error value util is not a member of com.analysis.common>#RichIterable.com.
+[error]    |  analysis
+[error]    |.blackJack.io.AnalyzeBlackJackIO.com.analysis.blackJack.app.Continue found
+[error] -- [E049] Reference Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:98:29 
+[error] 98 |      case Some(Continue) => mainFlow(deckCompleted)
+[error]    |                             ^^^^^^^^
+[error]    |Reference to mainFlow is ambiguous,
+[error]    |it is both defined in object AnalyzeBlackJack
+[error]    |and imported subsequently by import (<error value util is not a member of com.analysis.common>#RichIterable.com.
+[error]    |  analysis
+[error]    |.blackJack.io.AnalyzeBlackJackIO.com.analysis.blackJack.app : 
+[error]    |  <error value util is not a member of com.analysis.common>
+[error]    |)._
+[error] -- [E135] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:99:16 
+[error] 99 |      case Some(Init) =>
+[error]    |                ^^^^
+[error]    |Stable identifier required, but <error value util is not a member of com.analysis.common>#RichIterable.com.
+[error]    |  analysis
+[error]    |.blackJack.io.AnalyzeBlackJackIO.com.analysis.blackJack.app.Init found
+[error] -- [E049] Reference Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:100:25 
+[error] 100 |        val optNewDeck = init()
+[error]     |                         ^^^^
+[error]     |Reference to init is ambiguous,
+[error]     |it is both defined in object AnalyzeBlackJack
+[error]     |and imported subsequently by import (<error value util is not a member of com.analysis.common>#RichIterable.com.
+[error]     |  analysis
+[error]     |.blackJack.io.AnalyzeBlackJackIO.com.analysis.blackJack.app : 
+[error]     |  <error value util is not a member of com.analysis.common>
+[error]     |)._
+[error] -- [E049] Reference Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\app\AnalyzeBlackJack.scala:103:8 
+[error] 103 |        mainFlow(newDeck)
+[error]     |        ^^^^^^^^
+[error]     |Reference to mainFlow is ambiguous,
+[error]     |it is both defined in object AnalyzeBlackJack
+[error]     |and imported subsequently by import (<error value util is not a member of com.analysis.common>#RichIterable.com.
+[error]     |  analysis
+[error]     |.blackJack.io.AnalyzeBlackJackIO.com.analysis.blackJack.app : 
+[error]     |  <error value util is not a member of com.analysis.common>
+[error]     |)._
+[error] 6 errors found
+[error] 6 errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 1 s, completed 2021/09/12 14:44:00
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

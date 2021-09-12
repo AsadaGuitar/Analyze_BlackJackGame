@@ -4,7 +4,6 @@ import com.analysis.blackJack.util.HandUtil._
 import com.analysis.common.calculation.Probs._
 import com.analysis.common.calculation._
 import com.analysis.common.calculation.Rational
-import com.analysis.common.util.RichIterable._
 import com.analysis.blackJack.util.DeckUtili._
 import javax.swing.DefaultCellEditor
 import scala.annotation.tailrec
@@ -16,8 +15,9 @@ import scala.concurrent.duration.{Duration, FiniteDuration}
 object HandProbsCalculator {
 
   private def calculateProb(hand: Hand,deck: Deck): Rational = {
-    val r: List[Int] = (((deck.length - hand.length) + 2) to deck.length).toList
-    new Rational(1, BigInt(productOfList(r)))
+    val range: List[Int] = (((deck.length - hand.length) + 2) to deck.length).toList
+    val denom = range.reduce((acc,x) => acc * x)
+    new Rational(1, BigInt(denom))
   }
   
   private def loopHit(hand: Hand, deck: Deck): Seq[Hand] = hand match{

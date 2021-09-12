@@ -1,7 +1,6 @@
 package com.analysis.blackJack.app
 
 import com.analysis.common.*
-import com.analysis.common.util.RichIterable.*
 import com.analysis.blackJack.util.DeckUtili.*
 import com.analysis.blackJack.util.HandUtil.*
 import com.analysis.blackJack.util.ActionUtil.*
