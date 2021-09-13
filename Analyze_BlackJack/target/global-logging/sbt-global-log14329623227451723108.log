@@ -1,0 +1,25 @@
+[debug] > Exec(all {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/products {file:/C:/Users/soroc/Documents/Scala-workspace/Analyze_BlackJack/}analyze_blackjack/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\target\scala-3.0.0\classes ...
+[error] -- [E040] Syntax Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\strategy\DetailsStrategy.scala:61:4 
+[error] 61 |    else {
+[error]    |    ^^^^
+[error]    |    'then' expected, but 'else' found
+[error] -- [E050] Type Error: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\strategy\DetailsStrategy.scala:57:21 
+[error] 57 |    if burstRational.isEmpty {
+[error]    |       ^^^^^^^^^^^^^^^^^^^^^
+[error]    |       method isEmpty in class Option does not take parameters
+[warn] -- [E129] Potential Issue Warning: C:\Users\soroc\Documents\Scala-workspace\Analyze_BlackJack\src\main\scala\com\analysis\blackJack\strategy\DetailsStrategy.scala:60:5 
+[warn] 60 |    }
+[warn]    |     ^
+[warn]    |A pure expression does nothing in statement position; you may be omitting necessary parentheses
+[warn] one warning found
+[error] two errors found
+[warn] one warning found
+[error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 0 s, completed 2021/09/14 0:15:56
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

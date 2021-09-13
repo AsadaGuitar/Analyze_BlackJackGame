@@ -49,11 +49,23 @@ object DetailsStrategy {
   　　　　　　　　implicit probs: Probs[Int]    使用するProbsクラス
   戻値          Option[Rational]              ディーラの負率を値として保有するRationalクラス
   */
-  def dealerLoseRate(userScore: Int)(implicit probs: Probs[Int]) =
-    for {
-      burst <- probs.get(21 < _)
-      under <- probs.get(_ < userScore)
-    } yield burst + under
+  def dealerLoseRate(userScore: Int)(implicit probs: Probs[Int]): Option[Rational] = {
+
+    val burstRational = probs.get(21 < _)
+    val underRational = probs.get(_ < userScore)
+
+    if (burstRational.isEmpty) {
+      if (underRational.isEmpty) None
+      else underRational
+    }
+    else {
+      if (underRational.isEmpty) burstRational
+      else for {
+        u <- underRational
+        b <- burstRational
+      } yield u + b
+    }
+  }
 
   /*
   メソッド名     userBurstRate
@@ -106,7 +118,7 @@ object DetailsStrategy {
   引数          rational: Option[Rational]    値を取得するOptionでラッピングされたRational
   戻値          BigDecimal                    値を取り出した結果
   */
-  private def getRate(rational: Option[Rational]): BigDecimal = rational match {
+  def getRate(rational: Option[Rational]): BigDecimal = rational match {
     case Some(x) => x.get()
     case _ => 0
   }
